@@ -1,0 +1,765 @@
+<!-- ============================================================
+     MYM - Gelismis Yonetim Paneli v6.1
+     TAM CALISAN SURUM - Giris + Chat + Dukkan + Notlar
+     Sifreler: Murat_2013 / Yusuf_2011 / Muhametali_2012
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYM CONTROL CENTER</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; font-family:'Segoe UI', Tahoma, sans-serif; }
+body { background:#1e1e2e; color:#cdd6f4; overflow:hidden; }
+
+#loginScreen {
+    position:fixed; inset:0;
+    background:linear-gradient(135deg, #0f0f1a 0%, #1e1e2e 50%, #181825 100%);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999;
+}
+#loginScreen.hidden { display:none; }
+.login-box {
+    background:#181825; border:1px solid #313244;
+    border-radius:14px; padding:42px 38px;
+    width:380px; box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    text-align:center;
+}
+.login-logo {
+    font-size:30px; font-weight:bold; color:#89b4fa;
+    letter-spacing:4px; margin-bottom:6px;
+}
+.login-sub {
+    font-size:12px; color:#6c7086; margin-bottom:28px;
+    letter-spacing:1px;
+}
+.login-box input {
+    width:100%; padding:13px 15px;
+    background:#313244; border:1px solid #45475a;
+    color:#cdd6f4; border-radius:8px;
+    font-size:14px; outline:none;
+    margin-bottom:12px; transition:0.2s;
+    text-align:center; letter-spacing:2px;
+}
+.login-box input:focus { border-color:#89b4fa; box-shadow:0 0 0 3px rgba(137,180,250,0.15); }
+.login-box button {
+    width:100%; padding:13px;
+    background:#89b4fa; color:#11111b;
+    border:none; border-radius:8px;
+    font-size:14px; font-weight:bold;
+    cursor:pointer; transition:0.2s;
+    margin-top:6px;
+}
+.login-box button:hover { filter:brightness(1.12); }
+.login-error {
+    color:#f38ba8; font-size:12px;
+    margin-top:10px; min-height:16px;
+    font-weight:bold;
+}
+.login-hint {
+    font-size:10px; color:#45475a;
+    margin-top:14px;
+}
+
+.header {
+    height:56px; background:#181825;
+    display:flex; align-items:center;
+    padding:0 15px;
+    border-bottom:1px solid #313244;
+    position:fixed; top:0; left:0; right:0; z-index:100;
+}
+.menu-btn {
+    background:#313244; color:#fff;
+    border:none; font-size:16px; font-weight:bold;
+    padding:8px 14px; border-radius:6px;
+    cursor:pointer; transition:0.2s;
+}
+.menu-btn:hover { background:#45475a; }
+.header-title {
+    margin-left:15px; font-size:15px; font-weight:bold;
+    color:#89b4fa; letter-spacing:3px;
+}
+.header-user {
+    margin-left:auto; display:flex; align-items:center; gap:10px;
+    font-size:12px; color:#a6adc8;
+}
+.user-dot {
+    width:9px; height:9px; border-radius:50%;
+    background:#a6e3a1; box-shadow:0 0 8px #a6e3a1;
+}
+.user-name { color:#89b4fa; font-weight:bold; }
+.logout-btn {
+    background:#f38ba8; color:#11111b;
+    border:none; padding:6px 12px;
+    border-radius:6px; font-size:11px;
+    font-weight:bold; cursor:pointer;
+    margin-left:8px;
+}
+
+.sidebar {
+    position:fixed; top:56px; left:0; bottom:0;
+    width:220px; background:#11111b;
+    border-right:1px solid #313244;
+    overflow-y:auto; transition:transform 0.25s ease;
+    z-index:90;
+}
+.sidebar.hidden { transform:translateX(-100%); }
+.sidebar-item {
+    display:block; width:100%;
+    background:transparent; color:#cdd6f4;
+    border:none; text-align:left;
+    font-size:13px; padding:12px 18px;
+    cursor:pointer;
+    border-left:3px solid transparent;
+    transition:0.15s;
+}
+.sidebar-item:hover { background:#1e1e2e; color:#89b4fa; }
+.sidebar-item.active {
+    background:#1e1e2e; color:#89b4fa;
+    border-left-color:#89b4fa;
+}
+
+.content {
+    position:fixed; top:56px; left:220px; right:0; bottom:0;
+    overflow-y:auto; padding:25px 30px;
+    transition:left 0.25s ease;
+}
+.content.full { left:0; }
+.page { display:none; }
+.page.active { display:block; }
+.page-title {
+    font-size:20px; font-weight:bold; color:#89b4fa;
+    margin-bottom:20px; padding-bottom:10px;
+    border-bottom:1px solid #313244;
+}
+
+label {
+    display:block; font-size:12px; color:#a6adc8;
+    margin:12px 0 5px; text-transform:uppercase;
+    letter-spacing:0.5px;
+}
+input[type="text"], input[type="number"], select, textarea {
+    width:100%; max-width:600px;
+    background:#313244; border:1px solid #45475a;
+    color:#cdd6f4; padding:10px 12px;
+    border-radius:6px; font-size:13px;
+    font-family:inherit; outline:none; transition:0.15s;
+}
+input:focus, select:focus, textarea:focus {
+    border-color:#89b4fa;
+    box-shadow:0 0 0 2px rgba(137,180,250,0.15);
+}
+textarea { resize:vertical; min-height:90px; }
+.btn {
+    display:inline-block; background:#89b4fa;
+    color:#11111b; border:none; font-weight:bold;
+    font-size:13px; padding:10px 22px;
+    border-radius:6px; cursor:pointer;
+    margin-top:14px; margin-right:8px; transition:0.15s;
+}
+.btn:hover { filter:brightness(1.15); }
+.btn.green{background:#a6e3a1;} .btn.red{background:#f38ba8;}
+.btn.yellow{background:#f9e2af;} .btn.purple{background:#cba6f7;}
+.btn.cyan{background:#94e2d5;}
+
+.log {
+    width:100%; max-width:900px;
+    background:#11111b; border:1px solid #313244;
+    border-radius:6px; padding:14px;
+    margin-top:14px;
+    font-family:'Consolas','Courier New',monospace;
+    font-size:12px; color:#a6e3a1;
+    height:260px; overflow-y:auto;
+    white-space:pre-wrap; line-height:1.5;
+}
+
+.stat-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:14px; max-width:900px;
+}
+.stat-card {
+    background:#181825; border:1px solid #313244;
+    border-radius:8px; padding:16px; transition:0.15s;
+}
+.stat-card:hover { border-color:#89b4fa; }
+.stat-label {
+    font-size:11px; color:#a6adc8;
+    text-transform:uppercase; letter-spacing:0.5px;
+}
+.stat-value {
+    font-size:22px; font-weight:bold;
+    color:#89b4fa; margin-top:6px;
+}
+
+.tool-btn {
+    display:block; width:100%; max-width:500px;
+    background:#313244; color:#cdd6f4;
+    border:1px solid #45475a; text-align:left;
+    padding:13px 18px; font-size:13px;
+    border-radius:6px; cursor:pointer;
+    margin-bottom:8px; transition:0.15s;
+}
+.tool-btn:hover {
+    background:#45475a;
+    border-color:#89b4fa; color:#89b4fa;
+}
+
+.chat-wrap {
+    display:flex; flex-direction:column;
+    height:calc(100vh - 160px);
+    max-width:900px;
+    background:#181825;
+    border:1px solid #313244;
+    border-radius:10px;
+    overflow:hidden;
+}
+.chat-header {
+    background:#11111b; padding:12px 18px;
+    border-bottom:1px solid #313244;
+    display:flex; align-items:center; gap:12px;
+    font-size:13px;
+}
+.chat-header .chat-dot {
+    width:10px; height:10px; border-radius:50%;
+    background:#a6e3a1; box-shadow:0 0 8px #a6e3a1;
+}
+.chat-messages {
+    flex:1; overflow-y:auto;
+    padding:16px;
+    display:flex; flex-direction:column; gap:10px;
+}
+.chat-msg {
+    max-width:70%;
+    padding:10px 14px;
+    border-radius:12px;
+    font-size:13px; line-height:1.4;
+    word-wrap:break-word;
+}
+.chat-msg.self {
+    align-self:flex-end;
+    background:#89b4fa; color:#11111b;
+    border-bottom-right-radius:3px;
+}
+.chat-msg.other {
+    align-self:flex-start;
+    background:#313244; color:#cdd6f4;
+    border-bottom-left-radius:3px;
+}
+.chat-msg .meta {
+    font-size:10px;
+    opacity:0.7;
+    margin-bottom:4px;
+    font-weight:bold;
+}
+.chat-input-bar {
+    display:flex; gap:8px;
+    padding:12px;
+    background:#11111b;
+    border-top:1px solid #313244;
+}
+.chat-input-bar input {
+    flex:1; max-width:none;
+    background:#1e1e2e; border:1px solid #313244;
+    color:#cdd6f4; padding:11px 14px;
+    border-radius:8px; font-size:13px; outline:none;
+}
+.chat-input-bar input:focus { border-color:#89b4fa; }
+.chat-input-bar button {
+    background:#89b4fa; color:#11111b;
+    border:none; padding:0 22px;
+    border-radius:8px; font-weight:bold;
+    cursor:pointer; font-size:13px;
+}
+
+.shop-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:16px;
+    max-width:1200px;
+}
+.shop-card {
+    background:#181825;
+    border:1px solid #313244;
+    border-radius:10px;
+    padding:16px;
+    transition:0.15s;
+}
+.shop-card:hover { border-color:#89b4fa; }
+.shop-card .owner {
+    font-size:12px; color:#89b4fa;
+    font-weight:bold; margin-bottom:8px;
+    display:flex; align-items:center; gap:6px;
+}
+.shop-card .owner-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:#a6e3a1;
+}
+.shop-card .product {
+    background:#11111b;
+    border:1px solid #313244;
+    border-radius:6px;
+    padding:10px 12px;
+    margin-bottom:8px;
+    display:flex; justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+}
+.shop-card .product .price {
+    color:#a6e3a1; font-weight:bold;
+}
+.shop-card .product .del {
+    background:#f38ba8; color:#11111b;
+    border:none; padding:3px 8px;
+    border-radius:4px; font-size:11px;
+    cursor:pointer; margin-left:8px;
+}
+.shop-card .empty {
+    font-size:12px; color:#6c7086;
+    text-align:center; padding:10px;
+    font-style:italic;
+}
+.shop-add {
+    display:flex; gap:6px; margin-top:10px;
+    flex-wrap:wrap;
+}
+.shop-add input {
+    flex:1; min-width:80px; max-width:none;
+    padding:7px 10px; font-size:12px;
+}
+.shop-add button {
+    background:#a6e3a1; color:#11111b;
+    border:none; padding:7px 14px;
+    border-radius:6px; font-size:12px;
+    font-weight:bold; cursor:pointer;
+}
+
+.note-item {
+    background:#181825;
+    border:1px solid #313244;
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    max-width:900px;
+}
+.note-item .note-head {
+    display:flex; justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+.note-item .note-title {
+    color:#89b4fa;
+    font-weight:bold;
+    font-size:14px;
+}
+.note-item .note-author {
+    font-size:11px;
+    color:#a6adc8;
+}
+.note-item .note-body {
+    font-size:13px;
+    color:#cdd6f4;
+    line-height:1.5;
+    white-space:pre-wrap;
+}
+.note-item .note-del {
+    background:#f38ba8; color:#11111b;
+    border:none; padding:4px 10px;
+    border-radius:4px; font-size:11px;
+    cursor:pointer; font-weight:bold;
+}
+
+::-webkit-scrollbar { width:8px; height:8px; }
+::-webkit-scrollbar-track { background:#11111b; }
+::-webkit-scrollbar-thumb { background:#45475a; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<!-- GIRIS EKRANI -->
+<div id="loginScreen">
+    <div class="login-box">
+        <div class="login-logo">MYM</div>
+        <div class="login-sub">GÜVENLİ GİRİŞ SİSTEMİ</div>
+        <input type="text" id="loginPass" placeholder="Şifrenizi girin" autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button type="button" id="loginBtn">GİRİŞ YAP</button>
+        <div class="login-error" id="loginError"></div>
+        <div class="login-hint">Şifre büyük/küçük harfe duyarlıdır</div>
+    </div>
+</div>
+
+<!-- UST BAR -->
+<div class="header">
+    <button class="menu-btn" onclick="toggleSidebar()">☰ Menü</button>
+    <div class="header-title">MYM CONTROL CENTER</div>
+    <div class="header-user">
+        <span class="user-dot"></span>
+        <span class="user-name" id="currentUser">-</span>
+        <button class="logout-btn" onclick="doLogout()">Çıkış</button>
+    </div>
+</div>
+
+<!-- YAN MENU -->
+<aside class="sidebar" id="sidebar">
+    <button class="sidebar-item active" data-page="home">🏠 Ana Sayfa</button>
+    <button class="sidebar-item" data-page="chat">💬 Canlı Sohbet</button>
+    <button class="sidebar-item" data-page="shop">🛒 Dükkanlar</button>
+    <button class="sidebar-item" data-page="daily">🌟 Günlük Araçlar</button>
+    <button class="sidebar-item" data-page="notes">📝 Ortak Notlar</button>
+    <button class="sidebar-item" data-page="telegram">📨 Telegram Botu</button>
+    <button class="sidebar-item" data-page="sms">💣 SMS Bomber</button>
+    <button class="sidebar-item" data-page="phish">🎣 Phishing Generator</button>
+    <button class="sidebar-item" data-page="operator">📡 Operator Sorgu</button>
+    <button class="sidebar-item" data-page="idquery">🆔 ID Sorgu</button>
+    <button class="sidebar-item" data-page="tools">🛠️ Sistem Araçları</button>
+    <button class="sidebar-item" data-page="stats">📊 İstatistikler</button>
+    <button class="sidebar-item" data-page="settings">⚙️ Ayarlar</button>
+</aside>
+
+<!-- ICERIK -->
+<main class="content" id="content">
+
+    <section class="page active" id="page-home">
+        <div class="page-title">Ana Panel</div>
+        <p style="color:#a6adc8; line-height:1.8;">
+            MYM Gelismis Yonetim Sistemine Hos Geldiniz, <b id="welcomeName" style="color:#89b4fa;">-</b>.<br>
+            Sol menuden modullere erisebilirsiniz.
+        </p>
+        <div class="stat-grid" style="margin-top:22px;">
+            <div class="stat-card"><div class="stat-label">Canlı Sohbet</div><div class="stat-value">💬</div></div>
+            <div class="stat-card"><div class="stat-label">Dükkanlar</div><div class="stat-value">🛒</div></div>
+            <div class="stat-card"><div class="stat-label">Günlük Araçlar</div><div class="stat-value">🌟</div></div>
+            <div class="stat-card"><div class="stat-label">Ortak Notlar</div><div class="stat-value">📝</div></div>
+            <div class="stat-card"><div class="stat-label">Telegram</div><div class="stat-value">📨</div></div>
+            <div class="stat-card"><div class="stat-label">SMS Bomber</div><div class="stat-value">💣</div></div>
+        </div>
+    </section>
+
+    <section class="page" id="page-chat">
+        <div class="page-title">Canlı Sohbet Odası</div>
+        <div class="chat-wrap">
+            <div class="chat-header">
+                <span class="chat-dot"></span>
+                <span>MYM Özel Oda</span>
+                <span style="margin-left:auto; color:#6c7086;">çevrimiçi</span>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-bar">
+                <input type="text" id="chatInput" placeholder="Mesaj yaz..." onkeydown="if(event.key==='Enter')sendChat()">
+                <button onclick="sendChat()">Gönder</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="page" id="page-shop">
+        <div class="page-title">Dükkanlar</div>
+        <p style="color:#6c7086; font-size:12px; margin-bottom:16px;">
+            Her kullanıcı kendi dükkanına ürün ekleyip silebilir. Tüm dükkanlar herkese görünür.
+        </p>
+        <div class="shop-grid" id="shopGrid"></div>
+    </section>
+
+    <section class="page" id="page-daily">
+        <div class="page-title">Günlük Hayat Araçları</div>
+        <div class="stat-grid" style="max-width:1200px;">
+            <div class="stat-card">
+                <div class="stat-label">🔐 Şifre Üretici</div>
+                <input type="number" id="pwLen" value="16" style="margin-top:10px; max-width:none;">
+                <button class="btn purple" onclick="genPassword()">Şifre Üret</button>
+                <div id="pwResult" style="font-size:13px; margin-top:8px; color:#cba6f7; word-break:break-all; font-family:Consolas,monospace;"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📅 Bugünün Tarihi</div>
+                <button class="btn cyan" onclick="showDate()">Göster</button>
+                <div id="dateResult" style="font-size:13px; margin-top:8px; color:#94e2d5;"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🎲 Zar At</div>
+                <button class="btn yellow" onclick="rollDice()">🎲 Zar At</button>
+                <div id="diceResult" style="font-size:32px; margin-top:8px; color:#f9e2af; text-align:center;"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🪙 Yazı Tura</div>
+                <button class="btn yellow" onclick="flipCoin()">🪙 At</button>
+                <div id="coinResult" style="font-size:20px; margin-top:8px; color:#f9e2af; text-align:center;"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🎨 Renk Paleti</div>
+                <button class="btn purple" onclick="genColors()">5 Renk Üret</button>
+                <div id="colorResult" style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📏 Birim Çevirici</div>
+                <input type="number" id="convVal" placeholder="Değer" style="margin-top:10px; max-width:none;">
+                <select id="convType" style="margin-top:8px; max-width:none;">
+                    <option value="km-mi">km → mil</option>
+                    <option value="mi-km">mil → km</option>
+                    <option value="kg-lb">kg → pound</option>
+                    <option value="lb-kg">pound → kg</option>
+                    <option value="c-f">°C → °F</option>
+                    <option value="f-c">°F → °C</option>
+                </select>
+                <button class="btn green" onclick="convertUnit()">Çevir</button>
+                <div id="convResult" style="font-size:13px; margin-top:8px; color:#a6e3a1;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page" id="page-notes">
+        <div class="page-title">Ortak Notlar</div>
+        <input type="text" id="noteTitle" placeholder="Not başlığı" style="max-width:400px;">
+        <textarea id="noteBody" placeholder="Not içeriği..." style="max-width:600px;"></textarea>
+        <button class="btn green" onclick="addNote()">➕ Not Ekle</button>
+        <div id="notesList" style="margin-top:20px; max-width:900px;"></div>
+    </section>
+
+    <section class="page" id="page-telegram">
+        <div class="page-title">Telegram Bot</div>
+        <label>Bot Token</label>
+        <input type="text" id="tgToken" placeholder="123456:ABC-DEF...">
+        <label>Chat ID</label>
+        <input type="text" id="tgChat" placeholder="-1001234567890">
+        <label>Mesaj</label>
+        <textarea id="tgMsg"></textarea>
+        <button class="btn green" onclick="sendTelegram()">🚀 Gönder</button>
+        <div class="log" id="tgLog">[Sistem] Hazır.</div>
+    </section>
+
+    <section class="page" id="page-sms">
+        <div class="page-title">SMS Bomber</div>
+        <label>Numara</label>
+        <input type="text" id="smsNumber" placeholder="5XX XXX XX XX">
+        <label>Adet</label>
+        <input type="number" id="smsCount" value="50">
+        <label>Gecikme (ms)</label>
+        <input type="number" id="smsDelay" value="1000">
+        <button class="btn red" onclick="startSMS()">💣 Başlat</button>
+        <div class="log" id="smsLog">[Sistem] Hazır.</div>
+    </section>
+
+    <section class="page" id="page-phish">
+        <div class="page-title">Phishing Generator</div>
+        <label>URL</label>
+        <input type="text" id="phishUrl" placeholder="https://...">
+        <label>Şablon</label>
+        <select id="phishTpl">
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="twitter">Twitter</option>
+            <option value="bank">Banka</option>
+        </select>
+        <button class="btn yellow" onclick="generatePhish()">🎣 Oluştur</button>
+        <textarea id="phishOut" style="min-height:260px; font-family:Consolas,monospace; font-size:12px;" readonly></textarea>
+    </section>
+
+    <section class="page" id="page-operator">
+        <div class="page-title">Operatör Sorgu</div>
+        <label>Numara</label>
+        <input type="text" id="opNumber" placeholder="5XX XXX XX XX">
+        <button class="btn yellow" onclick="queryOperator()">📡 Sorgula</button>
+        <div class="log" id="opLog">[Sistem] Hazır.</div>
+    </section>
+
+    <section class="page" id="page-idquery">
+        <div class="page-title">ID Sorgu</div>
+        <label>ID / Kullanıcı Adı</label>
+        <input type="text" id="idQuery" placeholder="@kullanici">
+        <button class="btn purple" onclick="queryID()">🆔 Sorgula</button>
+        <div class="log" id="idLog">[Sistem] Hazır.</div>
+    </section>
+
+    <section class="page" id="page-tools">
+        <div class="page-title">Sistem Araçları</div>
+        <button class="tool-btn" onclick="toolScan()">📁 Dosya Taraması</button>
+        <button class="tool-btn" onclick="toolCache()">🧹 Önbellek Temizliği</button>
+        <button class="tool-btn" onclick="toolPing()">🌐 Ping Testi</button>
+        <button class="tool-btn" onclick="toolSysInfo()">💻 Sistem Bilgisi</button>
+        <div class="log" id="toolLog">[Sistem] Hazır.</div>
+    </section>
+
+    <section class="page" id="page-stats">
+        <div class="page-title">İstatistikler</div>
+        <div class="stat-grid">
+            <div class="stat-card"><div class="stat-label">Telegram</div><div class="stat-value" id="stTg">0</div></div>
+            <div class="stat-card"><div class="stat-label">SMS</div><div class="stat-value" id="stSms">0</div></div>
+            <div class="stat-card"><div class="stat-label">Phishing</div><div class="stat-value" id="stPhish">0</div></div>
+            <div class="stat-card"><div class="stat-label">Operatör</div><div class="stat-value" id="stOp">0</div></div>
+            <div class="stat-card"><div class="stat-label">ID</div><div class="stat-value" id="stId">0</div></div>
+            <div class="stat-card"><div class="stat-label">Chat</div><div class="stat-value" id="stChat">0</div></div>
+        </div>
+    </section>
+
+    <section class="page" id="page-settings">
+        <div class="page-title">Ayarlar</div>
+        <label>Firebase Realtime DB URL</label>
+        <input type="text" id="fbUrl" placeholder="https://xxx-default-rtdb.firebaseio.com">
+        <button class="btn cyan" onclick="saveFbUrl()">Kaydet</button>
+    </section>
+
+</main>
+
+<script>
+/* ============================================================
+   KULLANICILAR - sifre -> isim eslesmesi
+   ============================================================ */
+const USERS = {
+    'Murat_2013'       : 'Murat',
+    'Yusuf_2011'       : 'Yusuf',
+    'Muhametali_2012'  : 'Muhammet Ali'
+};
+
+let currentUser = null;
+const stats = { tg:0, sms:0, phish:0, op:0, id:0, chat:0 };
+
+/* ============================================================
+   GIRIS / CIKIS
+   ============================================================ */
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('loginPass').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+});
+
+function doLogin() {
+    const inputPass = document.getElementById('loginPass').value.trim();
+    const errorDiv = document.getElementById('loginError');
+
+    if (USERS[inputPass]) {
+        currentUser = USERS[inputPass];
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('currentUser').innerText = currentUser;
+        document.getElementById('welcomeName').innerText = currentUser;
+        errorDiv.innerText = '';
+        initChat();
+        loadShops();
+        loadNotes();
+    } else {
+        errorDiv.innerText = 'Hatalı şifre girdiniz!';
+    }
+}
+
+function doLogout() {
+    currentUser = null;
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('loginError').innerText = '';
+}
+
+/* ============================================================
+   MENU VE SAYFA GECISLERI
+   ============================================================ */
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('hidden');
+    document.getElementById('content').classList.toggle('full');
+}
+
+document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', function() {
+        document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const targetPage = this.getAttribute('data-page');
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        const activePage = document.getElementById('page-' + targetPage);
+        if (activePage) activePage.classList.add('active');
+    });
+});
+
+/* ============================================================
+   ISTATISTIK
+   ============================================================ */
+function refreshStats() {
+    document.getElementById('stTg').innerText    = stats.tg;
+    document.getElementById('stSms').innerText   = stats.sms;
+    document.getElementById('stPhish').innerText = stats.phish;
+    document.getElementById('stOp').innerText    = stats.op;
+    document.getElementById('stId').innerText    = stats.id;
+    document.getElementById('stChat').innerText  = stats.chat;
+}
+
+function logTo(id, text) {
+    const el = document.getElementById(id);
+    const div = document.createElement('div');
+    div.textContent = text;
+    el.appendChild(div);
+    el.scrollTop = el.scrollHeight;
+}
+
+/* ============================================================
+   FIREBASE URL
+   ============================================================ */
+let fbUrl = localStorage.getItem('mym_fb') || '';
+function saveFbUrl() {
+    const u = document.getElementById('fbUrl').value.trim().replace(/\/$/, '');
+    fbUrl = u;
+    localStorage.setItem('mym_fb', u);
+    alert('Firebase URL kaydedildi: ' + u);
+}
+
+/* ============================================================
+   CANLI CHAT
+   ============================================================ */
+let chatTimer = null;
+
+function initChat() {
+    if (chatTimer) clearInterval(chatTimer);
+    pollChat();
+    chatTimer = setInterval(pollChat, 2500);
+}
+
+async function pollChat() {
+    if (!fbUrl) {
+        const box = document.getElementById('chatMessages');
+        if (box && box.children.length === 0) {
+            box.innerHTML = '<div style="color:#6c7086; font-size:12px; text-align:center;">Chat için Firebase URL girin (Ayarlar)</div>';
+        }
+        return;
+    }
+    try {
+        const res = await fetch(`${fbUrl}/messages.json?limitToLast=50`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const box = document.getElementById('chatMessages');
+        if (!box) return;
+        box.innerHTML = '';
+        if (!data) return;
+        const arr = Object.values(data).sort((a,b) => a.ts - b.ts);
+        arr.forEach(m => {
+            const div = document.createElement('div');
+            div.className = 'chat-msg ' + (m.name === currentUser ? 'self' : 'other');
+            const time = new Date(m.ts).toLocaleTimeString('tr-TR');
+            div.innerHTML = `<div class="meta">${escapeHtml(m.name)} • ${time}</div>${escapeHtml(m.text)}`;
+            box.appendChild(div);
+        });
+        box.scrollTop = box.scrollHeight;
+    } catch(e) {}
+}
+
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function sendChat() {
+    const inp = document.getElementById('chatInput');
+    const text = inp.value.trim();
+    if (!text || !currentUser) return;
+    if (!fbUrl) { alert('Önce Ayarlar sayfasından Firebase URL girin!'); return; }
+    inp.value = '';
+    try {
+        await fetch(`${fbUrl}/messages.json`, {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ name: currentUser, text, ts: Date.now() })
+        });
+        stats.chat++; refreshStats();
+        pollChat();
+    } catch(e) { alert('Gönderilemedi: '+e.message); }
+}
+
+/* ============================================================
+   DUKKANLAR
+   ============================================================ */
+const SHOP_OWNERS = ['Murat', 'Yusuf', 'Muhammet Ali'];
+
+async function loadShops() {
+    const
