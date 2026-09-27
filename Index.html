@@ -1,8 +1,3 @@
-<!-- ============================================================
-     MYM - Gelismis Yonetim Paneli v6.1
-     TAM CALISAN SURUM - Giris + Chat + Dukkan + Notlar
-     Sifreler: Murat_2013 / Yusuf_2011 / Muhametali_2012
-     ============================================================ -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -27,14 +22,8 @@ body { background:#1e1e2e; color:#cdd6f4; overflow:hidden; }
     width:380px; box-shadow:0 20px 60px rgba(0,0,0,0.6);
     text-align:center;
 }
-.login-logo {
-    font-size:30px; font-weight:bold; color:#89b4fa;
-    letter-spacing:4px; margin-bottom:6px;
-}
-.login-sub {
-    font-size:12px; color:#6c7086; margin-bottom:28px;
-    letter-spacing:1px;
-}
+.login-logo { font-size:30px; font-weight:bold; color:#89b4fa; letter-spacing:4px; margin-bottom:6px; }
+.login-sub { font-size:12px; color:#6c7086; margin-bottom:28px; letter-spacing:1px; }
 .login-box input {
     width:100%; padding:13px 15px;
     background:#313244; border:1px solid #45475a;
@@ -49,327 +38,88 @@ body { background:#1e1e2e; color:#cdd6f4; overflow:hidden; }
     background:#89b4fa; color:#11111b;
     border:none; border-radius:8px;
     font-size:14px; font-weight:bold;
-    cursor:pointer; transition:0.2s;
-    margin-top:6px;
+    cursor:pointer; transition:0.2s; margin-top:6px;
 }
 .login-box button:hover { filter:brightness(1.12); }
-.login-error {
-    color:#f38ba8; font-size:12px;
-    margin-top:10px; min-height:16px;
-    font-weight:bold;
-}
-.login-hint {
-    font-size:10px; color:#45475a;
-    margin-top:14px;
-}
+.login-error { color:#f38ba8; font-size:12px; margin-top:10px; min-height:16px; font-weight:bold; }
+.login-hint { font-size:10px; color:#45475a; margin-top:14px; }
 
 .header {
     height:56px; background:#181825;
     display:flex; align-items:center;
-    padding:0 15px;
-    border-bottom:1px solid #313244;
+    padding:0 15px; border-bottom:1px solid #313244;
     position:fixed; top:0; left:0; right:0; z-index:100;
 }
-.menu-btn {
-    background:#313244; color:#fff;
-    border:none; font-size:16px; font-weight:bold;
-    padding:8px 14px; border-radius:6px;
-    cursor:pointer; transition:0.2s;
-}
+.menu-btn { background:#313244; color:#fff; border:none; font-size:16px; font-weight:bold; padding:8px 14px; border-radius:6px; cursor:pointer; }
 .menu-btn:hover { background:#45475a; }
-.header-title {
-    margin-left:15px; font-size:15px; font-weight:bold;
-    color:#89b4fa; letter-spacing:3px;
-}
-.header-user {
-    margin-left:auto; display:flex; align-items:center; gap:10px;
-    font-size:12px; color:#a6adc8;
-}
-.user-dot {
-    width:9px; height:9px; border-radius:50%;
-    background:#a6e3a1; box-shadow:0 0 8px #a6e3a1;
-}
+.header-title { margin-left:15px; font-size:15px; font-weight:bold; color:#89b4fa; letter-spacing:3px; }
+.header-user { margin-left:auto; display:flex; align-items:center; gap:10px; font-size:12px; color:#a6adc8; }
+.user-dot { width:9px; height:9px; border-radius:50%; background:#a6e3a1; box-shadow:0 0 8px #a6e3a1; }
 .user-name { color:#89b4fa; font-weight:bold; }
-.logout-btn {
-    background:#f38ba8; color:#11111b;
-    border:none; padding:6px 12px;
-    border-radius:6px; font-size:11px;
-    font-weight:bold; cursor:pointer;
-    margin-left:8px;
-}
+.logout-btn { background:#f38ba8; color:#11111b; border:none; padding:6px 12px; border-radius:6px; font-size:11px; font-weight:bold; cursor:pointer; margin-left:8px; }
 
-.sidebar {
-    position:fixed; top:56px; left:0; bottom:0;
-    width:220px; background:#11111b;
-    border-right:1px solid #313244;
-    overflow-y:auto; transition:transform 0.25s ease;
-    z-index:90;
-}
+.sidebar { position:fixed; top:56px; left:0; bottom:0; width:220px; background:#11111b; border-right:1px solid #313244; overflow-y:auto; transition:transform 0.25s ease; z-index:90; }
 .sidebar.hidden { transform:translateX(-100%); }
-.sidebar-item {
-    display:block; width:100%;
-    background:transparent; color:#cdd6f4;
-    border:none; text-align:left;
-    font-size:13px; padding:12px 18px;
-    cursor:pointer;
-    border-left:3px solid transparent;
-    transition:0.15s;
-}
+.sidebar-item { display:block; width:100%; background:transparent; color:#cdd6f4; border:none; text-align:left; font-size:13px; padding:12px 18px; cursor:pointer; border-left:3px solid transparent; }
 .sidebar-item:hover { background:#1e1e2e; color:#89b4fa; }
-.sidebar-item.active {
-    background:#1e1e2e; color:#89b4fa;
-    border-left-color:#89b4fa;
-}
+.sidebar-item.active { background:#1e1e2e; color:#89b4fa; border-left-color:#89b4fa; }
 
-.content {
-    position:fixed; top:56px; left:220px; right:0; bottom:0;
-    overflow-y:auto; padding:25px 30px;
-    transition:left 0.25s ease;
-}
+.content { position:fixed; top:56px; left:220px; right:0; bottom:0; overflow-y:auto; padding:25px 30px; transition:left 0.25s ease; }
 .content.full { left:0; }
 .page { display:none; }
 .page.active { display:block; }
-.page-title {
-    font-size:20px; font-weight:bold; color:#89b4fa;
-    margin-bottom:20px; padding-bottom:10px;
-    border-bottom:1px solid #313244;
-}
+.page-title { font-size:20px; font-weight:bold; color:#89b4fa; margin-bottom:20px; padding-bottom:10px; border-bottom:1px solid #313244; }
 
-label {
-    display:block; font-size:12px; color:#a6adc8;
-    margin:12px 0 5px; text-transform:uppercase;
-    letter-spacing:0.5px;
-}
+label { display:block; font-size:12px; color:#a6adc8; margin:12px 0 5px; text-transform:uppercase; }
 input[type="text"], input[type="number"], select, textarea {
-    width:100%; max-width:600px;
-    background:#313244; border:1px solid #45475a;
-    color:#cdd6f4; padding:10px 12px;
-    border-radius:6px; font-size:13px;
-    font-family:inherit; outline:none; transition:0.15s;
+    width:100%; max-width:600px; background:#313244; border:1px solid #45475a;
+    color:#cdd6f4; padding:10px 12px; border-radius:6px; font-size:13px;
+    font-family:inherit; outline:none;
 }
-input:focus, select:focus, textarea:focus {
-    border-color:#89b4fa;
-    box-shadow:0 0 0 2px rgba(137,180,250,0.15);
-}
+input:focus, select:focus, textarea:focus { border-color:#89b4fa; }
 textarea { resize:vertical; min-height:90px; }
-.btn {
-    display:inline-block; background:#89b4fa;
-    color:#11111b; border:none; font-weight:bold;
-    font-size:13px; padding:10px 22px;
-    border-radius:6px; cursor:pointer;
-    margin-top:14px; margin-right:8px; transition:0.15s;
-}
+.btn { display:inline-block; background:#89b4fa; color:#11111b; border:none; font-weight:bold; font-size:13px; padding:10px 22px; border-radius:6px; cursor:pointer; margin-top:14px; margin-right:8px; }
 .btn:hover { filter:brightness(1.15); }
-.btn.green{background:#a6e3a1;} .btn.red{background:#f38ba8;}
-.btn.yellow{background:#f9e2af;} .btn.purple{background:#cba6f7;}
-.btn.cyan{background:#94e2d5;}
+.btn.green{background:#a6e3a1;} .btn.red{background:#f38ba8;} .btn.yellow{background:#f9e2af;} .btn.purple{background:#cba6f7;} .btn.cyan{background:#94e2d5;}
 
-.log {
-    width:100%; max-width:900px;
-    background:#11111b; border:1px solid #313244;
-    border-radius:6px; padding:14px;
-    margin-top:14px;
-    font-family:'Consolas','Courier New',monospace;
-    font-size:12px; color:#a6e3a1;
-    height:260px; overflow-y:auto;
-    white-space:pre-wrap; line-height:1.5;
-}
+.log { width:100%; max-width:900px; background:#11111b; border:1px solid #313244; border-radius:6px; padding:14px; margin-top:14px; font-family:Consolas,monospace; font-size:12px; color:#a6e3a1; height:260px; overflow-y:auto; white-space:pre-wrap; }
 
-.stat-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:14px; max-width:900px;
-}
-.stat-card {
-    background:#181825; border:1px solid #313244;
-    border-radius:8px; padding:16px; transition:0.15s;
-}
-.stat-card:hover { border-color:#89b4fa; }
-.stat-label {
-    font-size:11px; color:#a6adc8;
-    text-transform:uppercase; letter-spacing:0.5px;
-}
-.stat-value {
-    font-size:22px; font-weight:bold;
-    color:#89b4fa; margin-top:6px;
-}
+.stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; max-width:900px; }
+.stat-card { background:#181825; border:1px solid #313244; border-radius:8px; padding:16px; }
+.stat-label { font-size:11px; color:#a6adc8; text-transform:uppercase; }
+.stat-value { font-size:22px; font-weight:bold; color:#89b4fa; margin-top:6px; }
 
-.tool-btn {
-    display:block; width:100%; max-width:500px;
-    background:#313244; color:#cdd6f4;
-    border:1px solid #45475a; text-align:left;
-    padding:13px 18px; font-size:13px;
-    border-radius:6px; cursor:pointer;
-    margin-bottom:8px; transition:0.15s;
-}
-.tool-btn:hover {
-    background:#45475a;
-    border-color:#89b4fa; color:#89b4fa;
-}
+.tool-btn { display:block; width:100%; max-width:500px; background:#313244; color:#cdd6f4; border:1px solid #45475a; text-align:left; padding:13px 18px; font-size:13px; border-radius:6px; cursor:pointer; margin-bottom:8px; }
+.tool-btn:hover { background:#45475a; border-color:#89b4fa; color:#89b4fa; }
 
-.chat-wrap {
-    display:flex; flex-direction:column;
-    height:calc(100vh - 160px);
-    max-width:900px;
-    background:#181825;
-    border:1px solid #313244;
-    border-radius:10px;
-    overflow:hidden;
-}
-.chat-header {
-    background:#11111b; padding:12px 18px;
-    border-bottom:1px solid #313244;
-    display:flex; align-items:center; gap:12px;
-    font-size:13px;
-}
-.chat-header .chat-dot {
-    width:10px; height:10px; border-radius:50%;
-    background:#a6e3a1; box-shadow:0 0 8px #a6e3a1;
-}
-.chat-messages {
-    flex:1; overflow-y:auto;
-    padding:16px;
-    display:flex; flex-direction:column; gap:10px;
-}
-.chat-msg {
-    max-width:70%;
-    padding:10px 14px;
-    border-radius:12px;
-    font-size:13px; line-height:1.4;
-    word-wrap:break-word;
-}
-.chat-msg.self {
-    align-self:flex-end;
-    background:#89b4fa; color:#11111b;
-    border-bottom-right-radius:3px;
-}
-.chat-msg.other {
-    align-self:flex-start;
-    background:#313244; color:#cdd6f4;
-    border-bottom-left-radius:3px;
-}
-.chat-msg .meta {
-    font-size:10px;
-    opacity:0.7;
-    margin-bottom:4px;
-    font-weight:bold;
-}
-.chat-input-bar {
-    display:flex; gap:8px;
-    padding:12px;
-    background:#11111b;
-    border-top:1px solid #313244;
-}
-.chat-input-bar input {
-    flex:1; max-width:none;
-    background:#1e1e2e; border:1px solid #313244;
-    color:#cdd6f4; padding:11px 14px;
-    border-radius:8px; font-size:13px; outline:none;
-}
-.chat-input-bar input:focus { border-color:#89b4fa; }
-.chat-input-bar button {
-    background:#89b4fa; color:#11111b;
-    border:none; padding:0 22px;
-    border-radius:8px; font-weight:bold;
-    cursor:pointer; font-size:13px;
-}
+.chat-wrap { display:flex; flex-direction:column; height:calc(100vh - 160px); max-width:900px; background:#181825; border:1px solid #313244; border-radius:10px; overflow:hidden; }
+.chat-header { background:#11111b; padding:12px 18px; border-bottom:1px solid #313244; display:flex; align-items:center; gap:12px; font-size:13px; }
+.chat-header .chat-dot { width:10px; height:10px; border-radius:50%; background:#a6e3a1; box-shadow:0 0 8px #a6e3a1; }
+.chat-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+.chat-msg { max-width:70%; padding:10px 14px; border-radius:12px; font-size:13px; line-height:1.4; word-wrap:break-word; }
+.chat-msg.self { align-self:flex-end; background:#89b4fa; color:#11111b; border-bottom-right-radius:3px; }
+.chat-msg.other { align-self:flex-start; background:#313244; color:#cdd6f4; border-bottom-left-radius:3px; }
+.chat-msg .meta { font-size:10px; opacity:0.7; margin-bottom:4px; font-weight:bold; }
+.chat-input-bar { display:flex; gap:8px; padding:12px; background:#11111b; border-top:1px solid #313244; }
+.chat-input-bar input { flex:1; max-width:none; background:#1e1e2e; border:1px solid #313244; color:#cdd6f4; padding:11px 14px; border-radius:8px; font-size:13px; outline:none; }
+.chat-input-bar button { background:#89b4fa; color:#11111b; border:none; padding:0 22px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:13px; }
 
-.shop-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:16px;
-    max-width:1200px;
-}
-.shop-card {
-    background:#181825;
-    border:1px solid #313244;
-    border-radius:10px;
-    padding:16px;
-    transition:0.15s;
-}
-.shop-card:hover { border-color:#89b4fa; }
-.shop-card .owner {
-    font-size:12px; color:#89b4fa;
-    font-weight:bold; margin-bottom:8px;
-    display:flex; align-items:center; gap:6px;
-}
-.shop-card .owner-dot {
-    width:8px; height:8px; border-radius:50%;
-    background:#a6e3a1;
-}
-.shop-card .product {
-    background:#11111b;
-    border:1px solid #313244;
-    border-radius:6px;
-    padding:10px 12px;
-    margin-bottom:8px;
-    display:flex; justify-content:space-between;
-    align-items:center;
-    font-size:13px;
-}
-.shop-card .product .price {
-    color:#a6e3a1; font-weight:bold;
-}
-.shop-card .product .del {
-    background:#f38ba8; color:#11111b;
-    border:none; padding:3px 8px;
-    border-radius:4px; font-size:11px;
-    cursor:pointer; margin-left:8px;
-}
-.shop-card .empty {
-    font-size:12px; color:#6c7086;
-    text-align:center; padding:10px;
-    font-style:italic;
-}
-.shop-add {
-    display:flex; gap:6px; margin-top:10px;
-    flex-wrap:wrap;
-}
-.shop-add input {
-    flex:1; min-width:80px; max-width:none;
-    padding:7px 10px; font-size:12px;
-}
-.shop-add button {
-    background:#a6e3a1; color:#11111b;
-    border:none; padding:7px 14px;
-    border-radius:6px; font-size:12px;
-    font-weight:bold; cursor:pointer;
-}
+.shop-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; max-width:1200px; }
+.shop-card { background:#181825; border:1px solid #313244; border-radius:10px; padding:16px; }
+.shop-card .owner { font-size:12px; color:#89b4fa; font-weight:bold; margin-bottom:8px; }
+.shop-card .product { background:#11111b; border:1px solid #313244; border-radius:6px; padding:10px 12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+.shop-card .product .price { color:#a6e3a1; font-weight:bold; }
+.shop-card .product .del { background:#f38ba8; color:#11111b; border:none; padding:3px 8px; border-radius:4px; font-size:11px; cursor:pointer; margin-left:8px; }
+.shop-card .empty { font-size:12px; color:#6c7086; text-align:center; padding:10px; font-style:italic; }
+.shop-add { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+.shop-add input { flex:1; min-width:80px; max-width:none; padding:7px 10px; font-size:12px; }
+.shop-add button { background:#a6e3a1; color:#11111b; border:none; padding:7px 14px; border-radius:6px; font-size:12px; font-weight:bold; cursor:pointer; }
 
-.note-item {
-    background:#181825;
-    border:1px solid #313244;
-    border-radius:8px;
-    padding:14px 16px;
-    margin-bottom:10px;
-    max-width:900px;
-}
-.note-item .note-head {
-    display:flex; justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
-}
-.note-item .note-title {
-    color:#89b4fa;
-    font-weight:bold;
-    font-size:14px;
-}
-.note-item .note-author {
-    font-size:11px;
-    color:#a6adc8;
-}
-.note-item .note-body {
-    font-size:13px;
-    color:#cdd6f4;
-    line-height:1.5;
-    white-space:pre-wrap;
-}
-.note-item .note-del {
-    background:#f38ba8; color:#11111b;
-    border:none; padding:4px 10px;
-    border-radius:4px; font-size:11px;
-    cursor:pointer; font-weight:bold;
-}
+.note-item { background:#181825; border:1px solid #313244; border-radius:8px; padding:14px 16px; margin-bottom:10px; max-width:900px; }
+.note-item .note-title { color:#89b4fa; font-weight:bold; font-size:14px; margin-bottom:6px; }
+.note-item .note-author { font-size:11px; color:#a6adc8; margin-bottom:6px; }
+.note-item .note-body { font-size:13px; color:#cdd6f4; line-height:1.5; white-space:pre-wrap; }
+.note-item .note-del { background:#f38ba8; color:#11111b; border:none; padding:4px 10px; border-radius:4px; font-size:11px; cursor:pointer; font-weight:bold; margin-top:8px; }
 
 ::-webkit-scrollbar { width:8px; height:8px; }
 ::-webkit-scrollbar-track { background:#11111b; }
@@ -384,9 +134,9 @@ textarea { resize:vertical; min-height:90px; }
         <div class="login-logo">MYM</div>
         <div class="login-sub">GÜVENLİ GİRİŞ SİSTEMİ</div>
         <input type="text" id="loginPass" placeholder="Şifrenizi girin" autocomplete="off" autocapitalize="none" spellcheck="false">
-        <button type="button" id="loginBtn">GİRİŞ YAP</button>
+        <button type="button" id="loginBtn" onclick="doLogin()">GİRİŞ YAP</button>
         <div class="login-error" id="loginError"></div>
-        <div class="login-hint">Şifre büyük/küçük harfe duyarlıdır</div>
+        <div class="login-hint">Örnek: Murat_2013</div>
     </div>
 </div>
 
@@ -424,16 +174,13 @@ textarea { resize:vertical; min-height:90px; }
     <section class="page active" id="page-home">
         <div class="page-title">Ana Panel</div>
         <p style="color:#a6adc8; line-height:1.8;">
-            MYM Gelismis Yonetim Sistemine Hos Geldiniz, <b id="welcomeName" style="color:#89b4fa;">-</b>.<br>
-            Sol menuden modullere erisebilirsiniz.
+            MYM Sistemine Hoş Geldiniz, <b id="welcomeName" style="color:#89b4fa;">-</b>.
         </p>
         <div class="stat-grid" style="margin-top:22px;">
             <div class="stat-card"><div class="stat-label">Canlı Sohbet</div><div class="stat-value">💬</div></div>
             <div class="stat-card"><div class="stat-label">Dükkanlar</div><div class="stat-value">🛒</div></div>
             <div class="stat-card"><div class="stat-label">Günlük Araçlar</div><div class="stat-value">🌟</div></div>
             <div class="stat-card"><div class="stat-label">Ortak Notlar</div><div class="stat-value">📝</div></div>
-            <div class="stat-card"><div class="stat-label">Telegram</div><div class="stat-value">📨</div></div>
-            <div class="stat-card"><div class="stat-label">SMS Bomber</div><div class="stat-value">💣</div></div>
         </div>
     </section>
 
@@ -455,9 +202,6 @@ textarea { resize:vertical; min-height:90px; }
 
     <section class="page" id="page-shop">
         <div class="page-title">Dükkanlar</div>
-        <p style="color:#6c7086; font-size:12px; margin-bottom:16px;">
-            Her kullanıcı kendi dükkanına ürün ekleyip silebilir. Tüm dükkanlar herkese görünür.
-        </p>
         <div class="shop-grid" id="shopGrid"></div>
     </section>
 
@@ -485,25 +229,6 @@ textarea { resize:vertical; min-height:90px; }
                 <button class="btn yellow" onclick="flipCoin()">🪙 At</button>
                 <div id="coinResult" style="font-size:20px; margin-top:8px; color:#f9e2af; text-align:center;"></div>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">🎨 Renk Paleti</div>
-                <button class="btn purple" onclick="genColors()">5 Renk Üret</button>
-                <div id="colorResult" style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;"></div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">📏 Birim Çevirici</div>
-                <input type="number" id="convVal" placeholder="Değer" style="margin-top:10px; max-width:none;">
-                <select id="convType" style="margin-top:8px; max-width:none;">
-                    <option value="km-mi">km → mil</option>
-                    <option value="mi-km">mil → km</option>
-                    <option value="kg-lb">kg → pound</option>
-                    <option value="lb-kg">pound → kg</option>
-                    <option value="c-f">°C → °F</option>
-                    <option value="f-c">°F → °C</option>
-                </select>
-                <button class="btn green" onclick="convertUnit()">Çevir</button>
-                <div id="convResult" style="font-size:13px; margin-top:8px; color:#a6e3a1;"></div>
-            </div>
         </div>
     </section>
 
@@ -518,9 +243,9 @@ textarea { resize:vertical; min-height:90px; }
     <section class="page" id="page-telegram">
         <div class="page-title">Telegram Bot</div>
         <label>Bot Token</label>
-        <input type="text" id="tgToken" placeholder="123456:ABC-DEF...">
+        <input type="text" id="tgToken">
         <label>Chat ID</label>
-        <input type="text" id="tgChat" placeholder="-1001234567890">
+        <input type="text" id="tgChat">
         <label>Mesaj</label>
         <textarea id="tgMsg"></textarea>
         <button class="btn green" onclick="sendTelegram()">🚀 Gönder</button>
@@ -530,7 +255,7 @@ textarea { resize:vertical; min-height:90px; }
     <section class="page" id="page-sms">
         <div class="page-title">SMS Bomber</div>
         <label>Numara</label>
-        <input type="text" id="smsNumber" placeholder="5XX XXX XX XX">
+        <input type="text" id="smsNumber">
         <label>Adet</label>
         <input type="number" id="smsCount" value="50">
         <label>Gecikme (ms)</label>
@@ -542,22 +267,21 @@ textarea { resize:vertical; min-height:90px; }
     <section class="page" id="page-phish">
         <div class="page-title">Phishing Generator</div>
         <label>URL</label>
-        <input type="text" id="phishUrl" placeholder="https://...">
+        <input type="text" id="phishUrl">
         <label>Şablon</label>
         <select id="phishTpl">
             <option value="instagram">Instagram</option>
             <option value="facebook">Facebook</option>
-            <option value="twitter">Twitter</option>
             <option value="bank">Banka</option>
         </select>
         <button class="btn yellow" onclick="generatePhish()">🎣 Oluştur</button>
-        <textarea id="phishOut" style="min-height:260px; font-family:Consolas,monospace; font-size:12px;" readonly></textarea>
+        <textarea id="phishOut" style="min-height:260px; font-family:Consolas,monospace;" readonly></textarea>
     </section>
 
     <section class="page" id="page-operator">
         <div class="page-title">Operatör Sorgu</div>
         <label>Numara</label>
-        <input type="text" id="opNumber" placeholder="5XX XXX XX XX">
+        <input type="text" id="opNumber">
         <button class="btn yellow" onclick="queryOperator()">📡 Sorgula</button>
         <div class="log" id="opLog">[Sistem] Hazır.</div>
     </section>
@@ -565,7 +289,7 @@ textarea { resize:vertical; min-height:90px; }
     <section class="page" id="page-idquery">
         <div class="page-title">ID Sorgu</div>
         <label>ID / Kullanıcı Adı</label>
-        <input type="text" id="idQuery" placeholder="@kullanici">
+        <input type="text" id="idQuery">
         <button class="btn purple" onclick="queryID()">🆔 Sorgula</button>
         <div class="log" id="idLog">[Sistem] Hazır.</div>
     </section>
@@ -596,34 +320,33 @@ textarea { resize:vertical; min-height:90px; }
         <label>Firebase Realtime DB URL</label>
         <input type="text" id="fbUrl" placeholder="https://xxx-default-rtdb.firebaseio.com">
         <button class="btn cyan" onclick="saveFbUrl()">Kaydet</button>
+        <div style="margin-top:10px;font-size:12px;color:#6c7086;">
+            Chat, Dükkan ve Notlar için Firebase URL gerekir. Firebase Console → Realtime Database → URL kopyala.
+        </div>
     </section>
 
 </main>
 
 <script>
 /* ============================================================
-   KULLANICILAR - sifre -> isim eslesmesi
+   KULLANICILAR
    ============================================================ */
-const USERS = {
-    'Murat_2013'       : 'Murat',
-    'Yusuf_2011'       : 'Yusuf',
-    'Muhametali_2012'  : 'Muhammet Ali'
+var USERS = {
+    'Murat_2013'      : 'Murat',
+    'Yusuf_2011'      : 'Yusuf',
+    'Muhametali_2012' : 'Muhammet Ali'
 };
 
-let currentUser = null;
-const stats = { tg:0, sms:0, phish:0, op:0, id:0, chat:0 };
+var currentUser = null;
+var stats = { tg:0, sms:0, phish:0, op:0, id:0, chat:0 };
+var fbUrl = localStorage.getItem('mym_fb') || '';
 
 /* ============================================================
-   GIRIS / CIKIS
+   GIRIS
    ============================================================ */
-document.getElementById('loginBtn').addEventListener('click', doLogin);
-document.getElementById('loginPass').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') doLogin();
-});
-
 function doLogin() {
-    const inputPass = document.getElementById('loginPass').value.trim();
-    const errorDiv = document.getElementById('loginError');
+    var inputPass = document.getElementById('loginPass').value.trim();
+    var errorDiv = document.getElementById('loginError');
 
     if (USERS[inputPass]) {
         currentUser = USERS[inputPass];
@@ -639,6 +362,10 @@ function doLogin() {
     }
 }
 
+document.getElementById('loginPass').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+});
+
 function doLogout() {
     currentUser = null;
     document.getElementById('loginPass').value = '';
@@ -647,20 +374,20 @@ function doLogout() {
 }
 
 /* ============================================================
-   MENU VE SAYFA GECISLERI
+   MENU
    ============================================================ */
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('hidden');
     document.getElementById('content').classList.toggle('full');
 }
 
-document.querySelectorAll('.sidebar-item').forEach(item => {
+document.querySelectorAll('.sidebar-item').forEach(function(item) {
     item.addEventListener('click', function() {
-        document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.sidebar-item').forEach(function(b){ b.classList.remove('active'); });
         this.classList.add('active');
-        const targetPage = this.getAttribute('data-page');
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        const activePage = document.getElementById('page-' + targetPage);
+        var targetPage = this.getAttribute('data-page');
+        document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+        var activePage = document.getElementById('page-' + targetPage);
         if (activePage) activePage.classList.add('active');
     });
 });
@@ -678,88 +405,183 @@ function refreshStats() {
 }
 
 function logTo(id, text) {
-    const el = document.getElementById(id);
-    const div = document.createElement('div');
+    var el = document.getElementById(id);
+    var div = document.createElement('div');
     div.textContent = text;
     el.appendChild(div);
     el.scrollTop = el.scrollHeight;
 }
 
 /* ============================================================
-   FIREBASE URL
+   FIREBASE
    ============================================================ */
-let fbUrl = localStorage.getItem('mym_fb') || '';
 function saveFbUrl() {
-    const u = document.getElementById('fbUrl').value.trim().replace(/\/$/, '');
+    var u = document.getElementById('fbUrl').value.trim().replace(/\/$/, '');
     fbUrl = u;
     localStorage.setItem('mym_fb', u);
-    alert('Firebase URL kaydedildi: ' + u);
+    alert('Kaydedildi: ' + u);
 }
 
 /* ============================================================
-   CANLI CHAT
+   CHAT
    ============================================================ */
-let chatTimer = null;
+var chatTimer = null;
 
 function initChat() {
+    document.getElementById('fbUrl').value = fbUrl;
     if (chatTimer) clearInterval(chatTimer);
     pollChat();
     chatTimer = setInterval(pollChat, 2500);
 }
 
-async function pollChat() {
-    if (!fbUrl) {
-        const box = document.getElementById('chatMessages');
-        if (box && box.children.length === 0) {
-            box.innerHTML = '<div style="color:#6c7086; font-size:12px; text-align:center;">Chat için Firebase URL girin (Ayarlar)</div>';
-        }
-        return;
-    }
-    try {
-        const res = await fetch(`${fbUrl}/messages.json?limitToLast=50`);
-        if (!res.ok) return;
-        const data = await res.json();
-        const box = document.getElementById('chatMessages');
-        if (!box) return;
-        box.innerHTML = '';
-        if (!data) return;
-        const arr = Object.values(data).sort((a,b) => a.ts - b.ts);
-        arr.forEach(m => {
-            const div = document.createElement('div');
-            div.className = 'chat-msg ' + (m.name === currentUser ? 'self' : 'other');
-            const time = new Date(m.ts).toLocaleTimeString('tr-TR');
-            div.innerHTML = `<div class="meta">${escapeHtml(m.name)} • ${time}</div>${escapeHtml(m.text)}`;
-            box.appendChild(div);
-        });
-        box.scrollTop = box.scrollHeight;
-    } catch(e) {}
-}
-
 function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    return String(s).replace(/[&<>"']/g, function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
 }
 
-async function sendChat() {
-    const inp = document.getElementById('chatInput');
-    const text = inp.value.trim();
+function pollChat() {
+    if (!fbUrl) return;
+    fetch(fbUrl + '/messages.json?limitToLast=50')
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+            var box = document.getElementById('chatMessages');
+            if (!box) return;
+            box.innerHTML = '';
+            if (!data) return;
+            var arr = Object.values(data).sort(function(a,b){ return a.ts - b.ts; });
+            arr.forEach(function(m){
+                var div = document.createElement('div');
+                div.className = 'chat-msg ' + (m.name === currentUser ? 'self' : 'other');
+                var time = new Date(m.ts).toLocaleTimeString('tr-TR');
+                div.innerHTML = '<div class="meta">' + escapeHtml(m.name) + ' • ' + time + '</div>' + escapeHtml(m.text);
+                box.appendChild(div);
+            });
+            box.scrollTop = box.scrollHeight;
+        })
+        .catch(function(){});
+}
+
+function sendChat() {
+    var inp = document.getElementById('chatInput');
+    var text = inp.value.trim();
     if (!text || !currentUser) return;
     if (!fbUrl) { alert('Önce Ayarlar sayfasından Firebase URL girin!'); return; }
     inp.value = '';
-    try {
-        await fetch(`${fbUrl}/messages.json`, {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({ name: currentUser, text, ts: Date.now() })
-        });
+    fetch(fbUrl + '/messages.json', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ name: currentUser, text: text, ts: Date.now() })
+    }).then(function(){
         stats.chat++; refreshStats();
         pollChat();
-    } catch(e) { alert('Gönderilemedi: '+e.message); }
+    }).catch(function(e){ alert('Gönderilemedi: ' + e.message); });
 }
 
 /* ============================================================
    DUKKANLAR
    ============================================================ */
-const SHOP_OWNERS = ['Murat', 'Yusuf', 'Muhammet Ali'];
+var SHOP_OWNERS = ['Murat', 'Yusuf', 'Muhammet Ali'];
 
-async function loadShops() {
-    const
+function loadShops() {
+    if (!fbUrl) {
+        renderShops({});
+        return;
+    }
+    fetch(fbUrl + '/shops.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data){ renderShops(data || {}); })
+        .catch(function(){ renderShops({}); });
+}
+
+function renderShops(data) {
+    var grid = document.getElementById('shopGrid');
+    grid.innerHTML = '';
+    SHOP_OWNERS.forEach(function(owner){
+        var items = (data[owner] || {});
+        var card = document.createElement('div');
+        card.className = 'shop-card';
+        var html = '<div class="owner">🛒 ' + owner + ' Dükkanı' + (owner === currentUser ? ' (Sen)' : '') + '</div>';
+        var keys = Object.keys(items);
+        if (keys.length === 0) {
+            html += '<div class="empty">Ürün yok</div>';
+        } else {
+            keys.forEach(function(k){
+                html += '<div class="product"><span>' + escapeHtml(items[k].name) + '</span>';
+                html += '<span><span class="price">' + escapeHtml(items[k].price) + ' ₺</span>';
+                if (owner === currentUser) html += '<button class="del" onclick="delProduct(\'' + k + '\')">Sil</button>';
+                html += '</span></div>';
+            });
+        }
+        if (owner === currentUser) {
+            html += '<div class="shop-add">';
+            html += '<input id="pname_' + owner + '" placeholder="Ürün adı">';
+            html += '<input id="pprice_' + owner + '" placeholder="Fiyat" style="max-width:80px;">';
+            html += '<button onclick="addProduct()">Ekle</button>';
+            html += '</div>';
+        }
+        card.innerHTML = html;
+        grid.appendChild(card);
+    });
+}
+
+function addProduct() {
+    if (!fbUrl) { alert('Firebase URL gerekli (Ayarlar)'); return; }
+    var name = document.getElementById('pname_' + currentUser).value.trim();
+    var price = document.getElementById('pprice_' + currentUser).value.trim();
+    if (!name || !price) { alert('Ürün adı ve fiyat gerekli'); return; }
+    var id = 'p_' + Date.now();
+    fetch(fbUrl + '/shops/' + currentUser + '/' + id + '.json', {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ name: name, price: price })
+    }).then(function(){
+        document.getElementById('pname_' + currentUser).value = '';
+        document.getElementById('pprice_' + currentUser).value = '';
+        loadShops();
+    }).catch(function(e){ alert(e.message); });
+}
+
+function delProduct(id) {
+    if (!fbUrl) return;
+    fetch(fbUrl + '/shops/' + currentUser + '/' + id + '.json', { method: 'DELETE' })
+        .then(function(){ loadShops(); });
+}
+
+/* ============================================================
+   NOTLAR
+   ============================================================ */
+function loadNotes() {
+    if (!fbUrl) { renderNotes({}); return; }
+    fetch(fbUrl + '/notes.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data){ renderNotes(data || {}); })
+        .catch(function(){ renderNotes({}); });
+}
+
+function renderNotes(data) {
+    var box = document.getElementById('notesList');
+    box.innerHTML = '';
+    var keys = Object.keys(data);
+    if (keys.length === 0) {
+        box.innerHTML = '<div style="color:#6c7086;font-size:12px;">Henüz not yok.</div>';
+        return;
+    }
+    keys.sort(function(a,b){ return data[b].ts - data[a].ts; });
+    keys.forEach(function(k){
+        var n = data[k];
+        var d = document.createElement('div');
+        d.className = 'note-item';
+        var html = '<div class="note-title">' + escapeHtml(n.title) + '</div>';
+        html += '<div class="note-author">Yazan: ' + escapeHtml(n.author) + ' • ' + new Date(n.ts).toLocaleString('tr-TR') + '</div>';
+        html += '<div class="note-body">' + escapeHtml(n.body) + '</div>';
+        if (n.author === currentUser) {
+            html += '<button class="note-del" onclick="delNote(\'' + k + '\')">Sil</button>';
+        }
+        d.innerHTML = html;
+        box.appendChild(d);
+    });
+}
+
+function addNote() {
+    if (!fbUrl) { alert
